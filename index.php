@@ -69,13 +69,17 @@ function unique_headers_instantiate_classes() {
 		'post_types'          => apply_filters( 'unique_headers_post_types', array( 'post', 'page' ) ),
 	);
 
+	// Add support for post-types
 	if ( is_admin() ) {
 		new Custom_Image_Meta_Box( $args );
 	} else {
 		new Unique_Headers_Display( array( 'name' => $name ) );
 	}
 
+	// Add support for taxonomies
 	if ( function_exists( 'get_term_meta' ) ) {
+		$args['taxonomies'] = apply_filters( 'unique_headers_taxonomies', array( 'category', 'post_tag' ) );
+
 		new Unique_Header_Taxonomy_Header_Images( $args );
 	}
 

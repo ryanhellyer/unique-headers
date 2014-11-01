@@ -57,6 +57,15 @@ class Unique_Header_Taxonomy_Header_Images {
 	private $remove_custom_image;
 
 	/**
+	 * List of taxonomies to add meta boxes to
+	 *
+	 * @since 1.3
+	 * @access   private
+	 * @var      string    $taxonomies
+	 */
+	private $taxonomies;
+
+	/**
 	 * Class constructor
 	 * 
 	 * Adds methods to appropriate hooks
@@ -71,6 +80,7 @@ class Unique_Header_Taxonomy_Header_Images {
 		$this->title               = $args['title'];
 		$this->set_custom_image    = $args['set_custom_image'];
 		$this->remove_custom_image = $args['remove_custom_image'];
+		$this->taxonomies          = $args['taxonomies'];
 
 		add_action( 'init', array( $this, 'init' ) );
 	}
@@ -86,11 +96,11 @@ class Unique_Header_Taxonomy_Header_Images {
 		// Add actions for administration pages
 		if ( is_admin() ) {
 
-			add_action( 'category_edit_form_fields', array( $this, 'extra_fields' ), 1 );
-			add_action( 'post_tag_edit_form_fields', array( $this, 'extra_fields' ), 1 );
-
-			add_action( 'edit_category',             array( $this, 'storing_taxonomy_data' ) );
-			add_action( 'edit_post_tag',             array( $this, 'storing_taxonomy_data' ) );
+			// Add hooks for each taxonomy
+			foreach( $this->taxonomies as $taxonomy ) {
+				add_action( $taxonomy . '_edit_form_fields', array( $this, 'extra_fields' ), 1 );
+				add_action( 'edit_' . $taxonomy,             array( $this, 'storing_taxonomy_data' ) );
+			}
 
  		}
 
@@ -107,22 +117,44 @@ class Unique_Header_Taxonomy_Header_Images {
 	 */
 	public function header_image_filter( $url ) {
 
-		// Grab current taxonomy ID
+		/* We need to grab the current taxonomy ID
+		 * Unfortunately, categories and post tags behave different, so we
+		 * are checking for their presense and processing them slightly 
+		 * differently.
+		 */
 		if ( is_category() ) {
-			$tag_ID = get_query_var( 'cat' );
-		} else if ( is_tag() ) {
-			$tag_info = get_query_var( 'tag' );
-			$tag = get_term_by( 'slug', $tag_info, 'post_tag' );
-			$tag_ID = $tag->term_id;
+			$tax_ID = get_query_var( 'cat' );
+		} elseif( is_tag() || is_tag() ) {
+
+			// Now we can loop through all taxonomies
+			foreach( $this->taxonomies as $taxonomy ) {
+
+				// We need to ignore categories since we have already processed them				
+				if ( 'category' != $taxonomy ) {
+
+
+					if ( 'post_tag' == $taxonomy ) {
+						$tax_info = get_query_var( 'tag' );
+					} else {
+						$tax_info = get_query_var( $taxonomy );
+					}
+
+					$tax = get_term_by( 'slug', $tax_info, $taxonomy );
+					if ( isset( $tax->term_id ) ) {
+						$tax_ID = $tax->term_id;
+					}
+				}
+			}
 		}
 
+
 		// Bail out now if no term set
-		if ( ! isset( $tag_ID ) ) {
+		if ( ! isset( $tax_ID ) ) {
 			return $url;
 		}
 
 		// Grab stored taxonomy header
-		$attachment_id = get_term_meta( $tag_ID, 'taxonomy-header-image', true );
+		$attachment_id = get_term_meta( $tax_ID, 'taxonomy-header-image', true );
 
 		// Grab attachment's SRC if we have an ID, otherwise fallback to legacy support for the older URL system from earlier versions of the plugin
 		if ( is_numeric( $attachment_id ) ) {

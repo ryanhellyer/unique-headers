@@ -2,8 +2,8 @@
 Contributors: ryanhellyer
 Tags: header, headers, image, header-image, header-images, taxonomy, tag, category, posts, pages, taxonomies, post, page, unique
 Donate link: http://geek.ryanhellyer.net/donate/
-Requires at least: 3.9
-Stable tag: 1.2
+Requires at least: 4.0
+Stable tag: 1.3
 
 
 Adds the ability to use unique custom headers on individual pages, posts or categories or tags.
@@ -78,4 +78,3 @@ Version 1.0: Initial release<br />
 
 Thanks to the following for help with the development of this plugin:<br />
 * <a href="http://onmytodd.org">Todd</a> - Assistance with implementing support for tags<br />
-* <a href="http://www.dss.dep.no/">Norwegian Government Administration Services (G.A.S.)</a><br />
