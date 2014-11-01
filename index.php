@@ -54,7 +54,7 @@ require( 'inc/legacy.php' );
 /**
  * Instantiate classes
  * 
- * @since 1.0
+ * @since 1.3
  * @author Ryan Hellyer <ryanhellyer@gmail.com>
  */
 function unique_headers_instantiate_classes() {
@@ -86,3 +86,22 @@ function unique_headers_instantiate_classes() {
 
 }
 add_action( 'plugins_loaded', 'unique_headers_instantiate_classes' );
+
+/*
+ * Setup localization for translations
+ *
+ * @since 1.3
+ * @author Ryan Hellyer <ryanhellyer@gmail.com>
+ */
+function unique_headers_localization() {
+
+	// Localization
+	load_plugin_textdomain(
+		'unique-headers', // Unique identifier
+		false, // Deprecated abs path
+		dirname( plugin_basename( __FILE__ ) ) . '/languages/' // Languages folder
+	);
+
+}
+unique_headers_localization();
+//add_action( 'plugins_loaded', 'unique_headers_localization', 1 );

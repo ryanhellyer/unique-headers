@@ -142,7 +142,7 @@ class Unique_Header_Taxonomy_Header_Images {
 				// We need to ignore categories since we have already processed them				
 				if ( 'category' != $taxonomy ) {
 
-
+					// Tags behave oddly, so need to use a different query var accordingly
 					if ( 'post_tag' == $taxonomy ) {
 						$tax_info = get_query_var( 'tag' );
 					} else {

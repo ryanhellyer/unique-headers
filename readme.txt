@@ -13,6 +13,12 @@ Adds the ability to use unique custom headers on individual pages, posts or cate
 The <a href="http://geek.ryanhellyer.net/products/unique-headers/">Unique Headers Plugin</a> adds the ability to use unique custom headers on
 individual pages, posts or categories. This plugin makes use of the excellent <a href="http://wordpress.org/extend/plugins/taxonomy-metadata/">Taxonomy Metadata plugin</a> for handling header images for categories and tags.
 
+= Language support =
+
+Translations are available for the following languages:
+1. Norwegian Bokmål - provided by <a href="http://geek.ryanhellyer.net/">me :)</a>
+2. Spanish - provided by <a href="http://westoresolutions.com/">Mariano J. Ponce</a>
+
 
 == Installation ==
 
@@ -64,6 +70,8 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 
 == Changelog ==
 
+Version 1.3.2: Addition of Spanish translation<br />
+Version 1.3.1: Addition of Norwegian Bokmål translation<br />
 Version 1.3: Total rewrite to use custom built in system for media uploads. Also adapted taxonomies to use ID's and added support for extra post-types and taxonomies.<br />
 Version 1.2: Converted to use the class from the Multiple Featured Images plugin<br />
 Version 1.1: Added support for tags <br />
@@ -78,3 +86,6 @@ Version 1.0: Initial release<br />
 
 Thanks to the following for help with the development of this plugin:<br />
 * <a href="http://onmytodd.org">Todd</a> - Assistance with implementing support for tags<br />
+* <a href="http://westoresolutions.com/">Mariano J. Ponce</a> - Spanish translation<br />
+* <a href="http://nakri.co.uk/">Nadia Tokerud</a> - Proof-reading of Norwegian Bokmål translation<br />
+* <a href="http://bjornjohansen.no/">Bjørn Johansen</a> - Proof-reading of Norwegian Bokmål translation<br />
