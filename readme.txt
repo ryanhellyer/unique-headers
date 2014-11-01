@@ -64,7 +64,7 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 
 == Changelog ==
 
-Version 1.3: Total rewrite to use custom built in system for media uploads. Also adapted taxonomies to use ID's and added support for extra post-types.<br />
+Version 1.3: Total rewrite to use custom built in system for media uploads. Also adapted taxonomies to use ID's and added support for extra post-types and taxonomies.<br />
 Version 1.2: Converted to use the class from the Multiple Featured Images plugin<br />
 Version 1.1: Added support for tags <br />
 Version 1.0.4: Added support for displaying a category specific image on the single post pages<br />

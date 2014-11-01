@@ -66,6 +66,15 @@ class Unique_Header_Taxonomy_Header_Images {
 	private $taxonomies;
 
 	/**
+	 * The text for uploading header images
+	 *
+	 * @since 1.3
+	 * @access   private
+	 * @var      string    $upload_header_image
+	 */
+	private $upload_header_image;
+
+	/**
 	 * Class constructor
 	 * 
 	 * Adds methods to appropriate hooks
@@ -81,6 +90,7 @@ class Unique_Header_Taxonomy_Header_Images {
 		$this->set_custom_image    = $args['set_custom_image'];
 		$this->remove_custom_image = $args['remove_custom_image'];
 		$this->taxonomies          = $args['taxonomies'];
+		$this->upload_header_image = $args['upload_header_image'];
 
 		add_action( 'init', array( $this, 'init' ) );
 	}
@@ -278,7 +288,7 @@ class Unique_Header_Taxonomy_Header_Images {
 
 		?>
 		<tr valign="top">
-			<th scope="row"><?php _e( 'Upload header image', 'unique-headers' ); ?></th>
+			<th scope="row"><?php echo esc_html( $this->upload_header_image ); ?></th>
 			<td>
 				<div id="unique-header" class="postbox " >
 					<div class="inside">

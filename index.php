@@ -65,7 +65,7 @@ function unique_headers_instantiate_classes() {
 		'dir_uri'             => plugin_dir_url( __FILE__ ) . 'assets',
 		'title'               => __( 'Custom header', 'unique-headers' ),
 		'set_custom_image'    => __( 'Set Custom Header Image', 'unique-headers' ),
-		'remove_custom_image' => __( 'Remove Custom header Image', 'unique-headers' ),
+		'remove_custom_image' => __( 'Remove Custom Header Image', 'unique-headers' ),
 		'post_types'          => apply_filters( 'unique_headers_post_types', array( 'post', 'page' ) ),
 	);
 
@@ -78,7 +78,8 @@ function unique_headers_instantiate_classes() {
 
 	// Add support for taxonomies
 	if ( function_exists( 'get_term_meta' ) ) {
-		$args['taxonomies'] = apply_filters( 'unique_headers_taxonomies', array( 'category', 'post_tag' ) );
+		$args['taxonomies']          = apply_filters( 'unique_headers_taxonomies', array( 'category', 'post_tag' ) );
+		$args['upload_header_image'] = __( 'Upload header image', 'unique-headers' );
 
 		new Unique_Header_Taxonomy_Header_Images( $args );
 	}
