@@ -19,11 +19,12 @@ To use this functionality with categories or tags, you will also need to install
 You must use a theme which utilizes the built-in custom header functionality of WordPress. If your theme implement it's own header functionality, then this plugin will not work with it.
 
 = Language support =
-Translations are available for the following languages:
+The plugin includes translations for the following languages:
 1. Spanish - provided by <a href="http://westoresolutions.com/">Mariano J. Ponce</a>
-2. German - provided by <a href="http://www.graphicana.de/">Tobias Klotz</a>
-3. Norwegian Bokmål - provided by <a href="http://geek.ryanhellyer.net/">me :)</a>
-4. Swedish - provided by <a href="http://www.nordicskibums.net/">Karl Olofsson</a>
+2. French - provided by <a href="http://www.jennybeaumont.com/>Jenny Beaumont</a>
+3. German - provided by <a href="http://www.graphicana.de/">Tobias Klotz</a>
+4. Norwegian Bokmål - provided by <a href="http://geek.ryanhellyer.net/">me :)</a>
+5. Swedish - provided by <a href="http://www.nordicskibums.net/">Karl Olofsson</a>
 
 
 == Installation ==
@@ -121,6 +122,7 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 
 == Changelog ==
 
+Version 1.3.5: Addition of French translation<br />
 Version 1.3.4: Addition of Swedish translation<br />
 Version 1.3.3: Addition of German translation<br />
 Version 1.3.2: Addition of Spanish translation<br />
@@ -142,3 +144,4 @@ Thanks to the following for help with the development of this plugin:<br />
 * <a href="http://westoresolutions.com/">Mariano J. Ponce</a> - Spanish translation<br />
 * <a href="http://nakri.co.uk/">Nadia Tokerud</a> - Proof-reading of Norwegian Bokmål translation<br />
 * <a href="http://bjornjohansen.no/">Bjørn Johansen</a> - Proof-reading of Norwegian Bokmål translation<br />
+* <a href="http://www.jennybeaumont.com/>Jenny Beaumont</a> - French translation<br />
