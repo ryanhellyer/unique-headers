@@ -122,8 +122,9 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 
 == Screenshots ==
 
-1. The custom image uploader for posts/pages, when using the <a href="http://geek.ryanhellyer.net/products/unique-headers/">Unique Headers Plugin</a>
-2. The custom image uploader for categories, when using the <a href="http://geek.ryanhellyer.net/products/unique-headers/">Unique Headers Plugin</a> and <a href="http://wordpress.org/extend/plugins/taxonomy-metadata/">Taxonomy Metadata plugin</a>
+1. The new meta box as added to the posts/pages screen
+2. The custom header image uploader for adding new header images
+3. The new meta box for categories and tags. This view is only seen when using the <a href="http://wordpress.org/extend/plugins/taxonomy-metadata/">Taxonomy Metadata plugin</a>
 
 
 == Changelog ==
