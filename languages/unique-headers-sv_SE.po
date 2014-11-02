@@ -1,0 +1,25 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Unique Headers\n"
+"Language: sv\n"
+
+#: 
+msgid "Custom header"
+msgstr "Anpassningsbar header"
+
+#: 
+msgid "Set Custom Header Image"
+msgstr "Välj header-bild"
+
+#: 
+msgid "Remove Custom Header Image"
+msgstr "Ta bort header-bilden"
+
+#: 
+msgid "Upload header image"
+msgstr "Ladda upp header-bild"
+
