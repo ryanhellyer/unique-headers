@@ -1,6 +1,6 @@
 === Unique Headers ===
 Contributors: ryanhellyer
-Tags: header, headers, image, header-image, header-images, taxonomy, tag, category, posts, pages, taxonomies, post, page, unique
+Tags: custom-header, header, headers, image, header-image, header-images, taxonomy, tag, category, posts, pages, taxonomies, post, page, unique, custom
 Donate link: http://geek.ryanhellyer.net/donate/
 Requires at least: 4.0
 Stable tag: 1.3.4
@@ -104,6 +104,11 @@ add_filter( 'unique_headers_taxonomies', 'unique_headers_add_taxonomy' );
 There isn't one.
 
 
+= Other plugins work out the width and height of the header and serve the correct sized header. Why doesn't your plugin do that? =
+
+I prefer to allow you to set the width and height yourself by opening a correct sized image. This allows you to provide over-resolution images to cater for "retina screen" and zoomed in users. Plus, it allows you to control the compression and image quality yourself. Neither route is better in my opinion. If require this functionality, please let me know though, as if most people prefer the other route, then I may change how the plugin works. I suspect most people won't care either way though.
+
+
 = Does it work in older versions of WordPress? =
 
 Probably, but I only actively support the latest version of WordPress. Support for older versions is purely by accident.
@@ -114,6 +119,7 @@ Probably, but I only actively support the latest version of WordPress. Support f
 No, I'm too busy. Having said that, if you are willing to pay me a small fortune then I could <a href="http://geek.ryanhellyer.net/contact/">probably be persuaded</a>. I'm also open to suggestions for improvements, so feel free to send me ideas and if you are lucky, it may be added for free :)
 
 
+
 == Screenshots ==
 
 1. The custom image uploader for posts/pages, when using the <a href="http://geek.ryanhellyer.net/products/unique-headers/">Unique Headers Plugin</a>
@@ -122,6 +128,7 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 
 == Changelog ==
 
+Version 1.3.6: Adjustment to match post meta key to other plugins, for compatibilty reasons.<br />
 Version 1.3.5: Addition of French translation<br />
 Version 1.3.4: Addition of Swedish translation<br />
 Version 1.3.3: Addition of German translation<br />

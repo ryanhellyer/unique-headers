@@ -58,8 +58,8 @@ require( 'inc/legacy.php' );
  * @author Ryan Hellyer <ryanhellyer@gmail.com>
  */
 function unique_headers_instantiate_classes() {
-
-	$name = 'unique-header';
+//die('this does not work with custom-header, but works with every single other string. But i need this to work for compatibilty iwth Tadlocks plugin :/');
+	$name = 'custom-header-image'; // THis says "custom-header" instead of "unique-header" to ensure compatibilty with Justin Tadlock's Custom Header Extended plugin which originally used a different post meta key value than the Unique Headers plugin
 	$args = array(
 		'name'                => $name,
 		'dir_uri'             => plugin_dir_url( __FILE__ ) . 'assets',
@@ -104,4 +104,3 @@ function unique_headers_localization() {
 
 }
 unique_headers_localization();
-//add_action( 'plugins_loaded', 'unique_headers_localization', 1 );
