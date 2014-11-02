@@ -6,15 +6,19 @@ Requires at least: 4.0
 Stable tag: 1.3.4
 
 
-Adds the ability to use unique custom headers on individual pages, posts or categories or tags.
+Adds the ability to use unique custom header images on individual pages, posts or categories or tags.
 
 == Description ==
 
-The <a href="http://geek.ryanhellyer.net/products/unique-headers/">Unique Headers Plugin</a> adds the ability to use unique custom headers on
-individual pages, posts or categories. This plugin makes use of the excellent <a href="http://wordpress.org/extend/plugins/taxonomy-metadata/">Taxonomy Metadata plugin</a> for handling header images for categories and tags.
+= Features =
+The <a href="http://geek.ryanhellyer.net/products/unique-headers/">Unique Headers Plugin</a> adds a custom header image box to the post/page edit screen. You can use this to upload a unique header image for that post, or use another image from your WordPress media library. When you view that page on the front-end of your site, the default header image for your site will be replaced by the unique header you selected.
+
+To use this functionality with categories or tags, you will also need to install the excellent <a href="http://wordpress.org/extend/plugins/taxonomy-metadata/">Taxonomy Metadata plugin</a>.
+
+= Requirements =
+You must use a theme which utilizes the built-in custom header functionality of WordPress. If your theme implement it's own header functionality, then this plugin will not work with it.
 
 = Language support =
-
 Translations are available for the following languages:
 1. Spanish - provided by <a href="http://westoresolutions.com/">Mariano J. Ponce</a>
 2. German - provided by <a href="http://www.graphicana.de/">Tobias Klotz</a>
@@ -39,20 +43,69 @@ Visit the <a href="http://geek.ryanhellyer.net/products/unique-headers/">Unique 
 == Frequently Asked Questions ==
 
 = I can't change the image on my categories/tags, what's wrong? =
-
 You need to install the <a href="http://wordpress.org/extend/plugins/taxonomy-metadata/">Taxonomy Metadata plugin</a>. WordPress does not support
 the taxonomy meta data which this plugin needs to use to store the custom header image URL. As soon as you install that plugin, the category/tag image
 functionality should begin working.
 
+= Your plugin doesn't work =
+Actually, it does work ;) The problem is likely with your theme. Some themes have "custom headers", but don't use the built-in WordPress custom header system and will not work with the Unique Headers plugin because of this. It is not possible to predict how other custom header systems work, and so those can not be supported by this plugin. To test if this is the problem, simply switch to one of the default themes which come with WordPress and see if the plugin works with those, if it does, then your theme is at fault.
 
-= Where's the settings page? =
+= My theme doesn't work with your plugin, how do I fix it? =
+This is a complex question and not something I can teach in a short FAQ. I recommend hiring a professional WordPress developer for assistance, or asking the developer of your theme to add support for the built-in WordPress custom header system.
+
+This is because WordPress does not provide a place for us to store data connected to a taxonomy such as a category or post tag. The Taxonomy Metadata plugin works around this problem by implement taxonomy meta. Future versions of WordPress are likely to include taxonomy meta baked in, and when this happens, the Unique Headers plugin will be updated to use that new functionality.
+
+= Does it work with custom post-types? =
+Not out of the box, but you can modify the following code to add support to suit your own requirements. You can can add this code to either your theme or to a custom plugin. You will need to modify the post-type to suit your own requirements. Some knowledge of PHP coding is necessary for this step.
+
+`
+<?php
+
+/*
+ * Add support for a post-type called "some-post-type"
+ *
+ * @param   array   $post_types   The currently supported post-types
+ * @return  array   $post_types   The modified list of supported post-types
+ */
+function unique_headers_add_post_type( $post_types ) {
+	$post_types[] = 'some-post-type';
+
+	return $post_types;
+}
+add_filter( 'unique_headers_post_types', 'unique_headers_add_post_type' );
+
+?>
+`
+
+= Does it work with taxonomies? =
+As with custom post-types, not out of the box. You can however modify the following code to add support to suit your own requirements. You can can add this code to either your theme or to a custom plugin. You will need to modify the taxonomy to suit your own requirements. Some knowledge of PHP coding is necessary for this step.
+
+`
+<?php
+
+/*
+ * Add support for a taxonomy called "some-taxonomy"
+ *
+ * @param   array   $taxonomies   The currently supported taxonomies
+ * @return  array   $taxonomies   The modified list of supported taxonomies
+ */
+function unique_headers_add_taxonomy( $taxonomies ) {
+	$taxonomies[] = 'some-taxonomy';
+	return $taxonomies;
+}
+add_filter( 'unique_headers_taxonomies', 'unique_headers_add_taxonomy' );
+
+?>
+`
+
+= Where's the plugin settings page? =
 
 There isn't one.
 
 
 = Does it work in older versions of WordPress? =
 
-Probably, but we only actively support the latest version of WordPress. Support for older versions is purely by accident.
+Probably, but I only actively support the latest version of WordPress. Support for older versions is purely by accident.
 
 
 = I need custom functionality. Can we pay you to build it for us? =
