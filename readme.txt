@@ -4,7 +4,7 @@ Tags: custom-header, header, headers, image, header-image, header-images, taxono
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.1
 Tested up to: 4.2
-Stable tag: 1.3.10
+Stable tag: 1.3.11
 
 
 
@@ -128,6 +128,7 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 
 == Changelog ==
 
+Version 1.3.11: Moved instantiation and localization code into a class.
 Version 1.3.10: Added Deutsch (German) language translation.
 Version 1.3.9: Fixing error which caused header images to disappear on upgrading (data was still available just not accessed correctly).<br />
 Version 1.3.8: Modification translation system to work with changes on WordPress.org.<br />
