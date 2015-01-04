@@ -1,11 +1,13 @@
 <?php
 /*
 Plugin Name: Unique Headers
-Plugin URI: http://geek.ryanhellyer.net/
+Plugin URI: https://geek.hellyer.kiwi/plugins/unique-headers/
 Description: Unique Headers
-Version: 1.3
+Version: 1.3.10
 Author: Ryan Hellyer
-Author URI: http://geek.ryanhellyer.net/
+Author URI: https://geek.hellyer.kiwi/
+Text Domain: unique-headers
+License: GPL2
 
 ------------------------------------------------------------------------
 Copyright Ryan Hellyer
@@ -58,8 +60,8 @@ require( 'inc/legacy.php' );
  * @author Ryan Hellyer <ryanhellyer@gmail.com>
  */
 function unique_headers_instantiate_classes() {
-//die('this does not work with custom-header, but works with every single other string. But i need this to work for compatibilty iwth Tadlocks plugin :/');
-	$name = 'custom-header-image'; // THis says "custom-header" instead of "unique-header" to ensure compatibilty with Justin Tadlock's Custom Header Extended plugin which originally used a different post meta key value than the Unique Headers plugin
+
+	$name = 'custom-header-image'; // This says "custom-header" instead of "unique-header" to ensure compatibilty with Justin Tadlock's Custom Header Extended plugin which originally used a different post meta key value than the Unique Headers plugin
 	$args = array(
 		'name'                => $name,
 		'dir_uri'             => plugin_dir_url( __FILE__ ) . 'assets',

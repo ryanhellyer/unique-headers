@@ -120,8 +120,8 @@ class Custom_Image_Meta_Box {
 		$attachment_id = get_post_meta( $post_id, '_' . $name . '_id', true );
 
 		// Check for fallback images
-		if ( '' == $attachment_id ) {
-			$attachment_id = apply_filters( $name . '_fallback_images', $post_id );
+		if ( ! $attachment_id ) {
+			$attachment_id = apply_filters( 'unique_header_fallback_images', $post_id );
 		}
 
 		return $attachment_id;
@@ -148,7 +148,7 @@ class Custom_Image_Meta_Box {
 	 * Registers the JavaScript for handling the media uploader.
 	 *
 	 * @since 1.3
-	 * @access   static     This method is static so that front-end scripts can access the attachments title
+	 * @access   static   This method is static so that front-end scripts can access the attachments title
 	 * @param    int      $attachment_id   The attachment ID
 	 * @return   string   $title           The attachment title
 	 */

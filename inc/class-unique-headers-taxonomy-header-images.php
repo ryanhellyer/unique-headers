@@ -114,7 +114,6 @@ class Unique_Header_Taxonomy_Header_Images {
 
  		}
 
-		// Add filter for category image (uses reduced priority to ensure that single post thumbnails override it)
 		add_filter( 'theme_mod_header_image',        array( $this, 'header_image_filter' ), 5 );
 
 	}

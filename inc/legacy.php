@@ -15,7 +15,7 @@
  * @param   int    $post_id          The current post ID
  * @param   int    $attachment_id    The attachment ID
  */
-function unique_headers_legacy( $post_id ) {
+function unique_header_fallback_images( $post_id ) {
 	$attachment_id = '';
 
 	// Loop through the legacy meta keys, looking for header images
@@ -24,7 +24,10 @@ function unique_headers_legacy( $post_id ) {
 		'page_custom-header_thumbnail_id',
 		'kd_custom-header_post_id',
 		'kd_custom-header_page_id',
+		'_unique_header_id', // This is due to version 1.3.8 which shouldn't have been released
+		'_custom_header_image', // temporary
 	);
+
 	foreach( $keys as $key ) {
 		if ( '' == $attachment_id ) {
 			$attachment_id = get_post_meta( $post_id, $key, true );
@@ -40,7 +43,7 @@ function unique_headers_legacy( $post_id ) {
 	} else {
 
 		// Update to use new meta key
-		update_post_meta( $post_id, '_unique_header_id', $attachment_id );
+		update_post_meta( $post_id, '_custom_header_image_id', $attachment_id );
 
 		// Delete unused meta keys
 		foreach( $keys_to_remove as $key ) {
@@ -50,4 +53,4 @@ function unique_headers_legacy( $post_id ) {
 
 	return $attachment_id;
 }
-add_filter( 'unique_header_fallback_images', 'unique_headers_legacy' );
+add_filter( 'unique_header_fallback_images', 'unique_header_fallback_images' );

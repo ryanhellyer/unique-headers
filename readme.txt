@@ -1,9 +1,11 @@
 === Unique Headers ===
 Contributors: ryanhellyer
 Tags: custom-header, header, headers, image, header-image, header-images, taxonomy, tag, category, posts, pages, taxonomies, post, page, unique, custom
-Donate link: http://geek.ryanhellyer.net/donate/
-Requires at least: 4.0
-Stable tag: 1.3.4
+Donate link: https://geek.hellyer.kiwi/donate/
+Requires at least: 4.1
+Tested up to: 4.2
+Stable tag: 1.3.10
+
 
 
 Adds the ability to use unique custom header images on individual pages, posts or categories or tags.
@@ -11,7 +13,7 @@ Adds the ability to use unique custom header images on individual pages, posts o
 == Description ==
 
 = Features =
-The <a href="http://geek.ryanhellyer.net/products/unique-headers/">Unique Headers Plugin</a> adds a custom header image box to the post/page edit screen. You can use this to upload a unique header image for that post, or use another image from your WordPress media library. When you view that page on the front-end of your site, the default header image for your site will be replaced by the unique header you selected.
+The <a href="https://geek.hellyer.kiwi/products/unique-headers/">Unique Headers Plugin</a> adds a custom header image box to the post/page edit screen. You can use this to upload a unique header image for that post, or use another image from your WordPress media library. When you view that page on the front-end of your site, the default header image for your site will be replaced by the unique header you selected.
 
 To use this functionality with categories or tags, you will also need to install the excellent <a href="http://wordpress.org/extend/plugins/taxonomy-metadata/">Taxonomy Metadata plugin</a>.
 
@@ -21,10 +23,7 @@ You must use a theme which utilizes the built-in custom header functionality of 
 = Language support =
 The plugin includes translations for the following languages:
 1. Spanish - provided by <a href="http://westoresolutions.com/">Mariano J. Ponce</a>
-2. French - provided by <a href="http://www.jennybeaumont.com/>Jenny Beaumont</a>
-3. German - provided by <a href="http://www.graphicana.de/">Tobias Klotz</a>
-4. Norwegian Bokmål - provided by <a href="http://geek.ryanhellyer.net/">me :)</a>
-5. Swedish - provided by <a href="http://www.nordicskibums.net/">Karl Olofsson</a>
+2. German - provided by <a href="http://www.graphicana.de/">Tobias Klotz</a>
 
 
 == Installation ==
@@ -38,7 +37,7 @@ After you've downloaded and extracted the files:
 
 Now you will see a new custom header image uploader whilst editing your site.
 
-Visit the <a href="http://geek.ryanhellyer.net/products/unique-headers/">Unique Headers Plugin</a> for more information.
+Visit the <a href="https://geek.hellyer.kiwi/products/unique-headers/">Unique Headers Plugin</a> for more information.
 
 
 == Frequently Asked Questions ==
@@ -106,7 +105,7 @@ There isn't one.
 
 = Other plugins work out the width and height of the header and serve the correct sized header. Why doesn't your plugin do that? =
 
-I prefer to allow you to set the width and height yourself by opening a correct sized image. This allows you to provide over-resolution images to cater for "retina screen" and zoomed in users. Plus, it allows you to control the compression and image quality yourself. Neither route is better in my opinion. If require this functionality, please let me know though, as if most people prefer the other route, then I may change how the plugin works. I suspect most people won't care either way though.
+I prefer to allow you to set the width and height yourself by opening a correct sized image. This allows you to provide over-resolution images to cater for "retina screen" and zoomed in users. Plus, it allows you to control the compression and image quality yourself. Neither route is better in my opinion. If you require this functionality, please let me know though, as if most people prefer the other route, then I may change how the plugin works. I suspect most people won't care either way though.
 
 
 = Does it work in older versions of WordPress? =
@@ -116,7 +115,7 @@ Probably, but I only actively support the latest version of WordPress. Support f
 
 = I need custom functionality. Can we pay you to build it for us? =
 
-No, I'm too busy. Having said that, if you are willing to pay me a small fortune then I could <a href="http://geek.ryanhellyer.net/contact/">probably be persuaded</a>. I'm also open to suggestions for improvements, so feel free to send me ideas and if you are lucky, it may be added for free :)
+No, I'm too busy. Having said that, if you are willing to pay me a small fortune then I could <a href="https://ryan.hellyer.kiwi/contact/">probably be persuaded</a>. I'm also open to suggestions for improvements, so feel free to send me ideas and if you are lucky, it may be added for free :)
 
 
 
@@ -129,12 +128,11 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 
 == Changelog ==
 
-Version 1.3.6: Adjustment to match post meta key to other plugins, for compatibilty reasons.<br />
-Version 1.3.5: Addition of French translation<br />
-Version 1.3.4: Addition of Swedish translation<br />
-Version 1.3.3: Addition of German translation<br />
-Version 1.3.2: Addition of Spanish translation<br />
-Version 1.3.1: Addition of Norwegian Bokmål translation<br />
+Version 1.3.10: Added Deutsch (German) language translation.
+Version 1.3.9: Fixing error which caused header images to disappear on upgrading (data was still available just not accessed correctly).<br />
+Version 1.3.8: Modification translation system to work with changes on WordPress.org.<br />
+Version 1.3.7: Addition of Spanish translation<br />
+Version 1.3.1: Adjustment to match post meta key to other plugins, for compatibilty reasons.<br />
 Version 1.3: Total rewrite to use custom built in system for media uploads. Also adapted taxonomies to use ID's and added support for extra post-types and taxonomies.<br />
 Version 1.2: Converted to use the class from the Multiple Featured Images plugin<br />
 Version 1.1: Added support for tags <br />
@@ -150,6 +148,9 @@ Version 1.0: Initial release<br />
 Thanks to the following for help with the development of this plugin:<br />
 * <a href="http://onmytodd.org">Todd</a> - Assistance with implementing support for tags<br />
 * <a href="http://westoresolutions.com/">Mariano J. Ponce</a> - Spanish translation<br />
-* <a href="http://nakri.co.uk/">Nadia Tokerud</a> - Proof-reading of Norwegian Bokmål translation<br />
-* <a href="http://bjornjohansen.no/">Bjørn Johansen</a> - Proof-reading of Norwegian Bokmål translation<br />
-* <a href="http://www.jennybeaumont.com/>Jenny Beaumont</a> - French translation<br />
+* <a href="http://www.graphicana.de/">Tobias Klotz</a> - Deutsch (German) language translation.
+* <a href="http://nakri.co.uk/">Nadia Tokerud</a> - Proof-reading of Norsk Bokmål (Norwegian) translation (coming soon)<br />
+* <a href="http://bjornjohansen.no/">Bjørn Johansen</a> - Proof-reading of Norwegian Bokmål translation (coming soon)<br />
+* <a href="https://www.facebook.com/kaljam/">Karl Olofsson</a> - Proof-reading of Swedish translation (coming soon)<br />
+* <a href="http://www.jennybeaumont.com/">Jenny Beaumont</a> - French translation (coming soon)<br />
+
