@@ -211,9 +211,11 @@ class Unique_Header_Taxonomy_Header_Images {
 				$attachment_id = esc_url( $attachment_id );
 			}
 		}
+		$single_posts_image = (bool) $_POST['single-posts-image'];
 
 		// Save the term meta data
 		update_term_meta( $tag_ID, 'taxonomy-header-image', $attachment_id );
+		update_term_meta( $tag_ID, 'single-posts-image', $single_posts_image );
 	}
 
 	/*
@@ -275,6 +277,7 @@ class Unique_Header_Taxonomy_Header_Images {
 
 		$tag_ID = absint( $_GET['tag_ID'] );
 		$attachment_id = get_term_meta( $tag_ID, 'taxonomy-header-image', true );
+		$single_posts = get_term_meta( $tag_ID, 'single-posts-image', true );
 
 		// We need to cater for legacy URL's as well as the newer attachment ID's
 		if ( is_numeric( $attachment_id ) ) {
@@ -294,7 +297,7 @@ class Unique_Header_Taxonomy_Header_Images {
 
 						<p class="hide-if-no-js">
 							<a title="<?php echo esc_attr( $this->set_custom_image ); ?>" href="javascript:;" id="<?php echo esc_attr( 'set-' . $this->name . '-thumbnail' ); ?>" class="set-custom-meta-image-thumbnail"><?php echo esc_html( $this->set_custom_image ); ?></a>
-						</p>
+						</p><!-- .hide-if-no-js -->
 
 						<div id="<?php echo esc_attr( $this->name . '-container' ); ?>" class="custom-meta-image-container hidden">
 							<img src="<?php echo esc_url( $url ); ?>" alt="<?php echo esc_attr( $title ); ?>" title="<?php echo esc_attr( $title ); ?>" />
@@ -304,10 +307,12 @@ class Unique_Header_Taxonomy_Header_Images {
 							<a title="<?php echo esc_attr( $this->remove_custom_image ); ?>" href="javascript:;" id="<?php echo esc_attr( 'remove-' . $this->name . '-thumbnail' ); ?>" class="remove-custom-meta-image-thumbnail"><?php echo esc_html( $this->remove_custom_image ); ?></a>
 						</p><!-- .hide-if-no-js -->
 
-						<p id="<?php echo esc_attr( $this->name . '-info' ); ?>" class="custom-meta-image-info">
-							<input type="hidden" id="<?php echo esc_attr( $this->name . '-id' ); ?>" class="custom-meta-image-id" name="<?php echo esc_attr( $this->name . '-id' ); ?>" value="<?php echo esc_attr( $attachment_id ); ?>" />
-						</p><!-- #<?php echo esc_attr( $this->name . '-image-info' ); ?> -->
+						<p>
+							<label for="single-posts-image"><?php _e( 'Display on individual posts', '' ); ?></label>
+							<input id="single-posts-image" name="single-posts-image" type="checkbox" <?php checked( $single_posts, true ); ?> />
+						</p>
 
+						<input type="hidden" id="<?php echo esc_attr( $this->name . '-id' ); ?>" class="custom-meta-image-id" name="<?php echo esc_attr( $this->name . '-id' ); ?>" value="<?php echo esc_attr( $attachment_id ); ?>" />
 						<?php wp_nonce_field( $this->name, $this->name . '-nonce' ); ?>
 
 					</div>
