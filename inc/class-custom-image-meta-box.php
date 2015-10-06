@@ -124,40 +124,6 @@ class Custom_Image_Meta_Box {
 			$attachment_id = apply_filters( 'unique_header_fallback_images', $post_id );
 		}
 
-		// If not attachment ID set, then check parent taxonomy (if terms plugin installed)
-		if ( function_exists( 'get_term_meta' ) && '' == $attachment_id && is_single() ) {
-			if ( false === ( $attachment_id = get_transient( 'single-posts-image-' . get_the_ID() ) ) ) {
-
-				// Grab taxonomy ID
-				$taxonomies = array(
-					'category',
-					'post_tag',
-				);
-				foreach( $taxonomies as $taxonomy ) {
-					$terms = wp_get_post_terms( get_the_ID(), $taxonomy );
-					foreach( $terms as $term ) {
-						$term_id = $term->term_id; // Only have time to process the first one (the rest would require too many DB queries)
-
-						// Only use parent taxonomy, if this has been allowed for this taxonomy
-						$single_posts = get_term_meta( $term_id, 'single-posts-image', true );
-						if ( true == $single_posts ) {
-
-							// Finally, grab the stored taxonomy headers attachment ID
-							$attachment_id = get_term_meta( $term_id, 'taxonomy-header-image', true );
-
-						}
-
-					}
-				}
-
-				// If attachment ID set, then stash it in a transient for use later (working out the attachment ID requires too many system resources to process)
-				if ( '' != $attachment_id ) {
-					set_transient( 'single-posts-image-' . get_the_ID(), $attachment_id, HOUR_IN_SECONDS );
-				}
-
-			} // End cache
-		}
-
 		return $attachment_id;
 	}
 
