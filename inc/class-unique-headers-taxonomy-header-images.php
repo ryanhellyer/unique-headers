@@ -169,7 +169,16 @@ class Unique_Header_Taxonomy_Header_Images {
 		if ( is_numeric( $attachment_id ) ) {
 			$new_url = Custom_Image_Meta_Box::get_attachment_src( $attachment_id );
 		} else {
-			$new_url = $attachment_id;
+
+			// Falling back to taxonomy meta plugin functionality
+			$attachment_id = get_metadata( 'taxonomy', $tax_ID, 'taxonomy-header-image', true );
+
+			if ( is_numeric( $attachment_id ) ) {
+				$new_url = Custom_Image_Meta_Box::get_attachment_src( $attachment_id );
+			} else {
+				$new_url = $attachment_id; // Defaulting back to really old version of the plugin which used URL's insteaded of attachment ID's
+			}
+
 		}
 
 		// Only use new URL if it isn't blank ... 
@@ -280,9 +289,18 @@ class Unique_Header_Taxonomy_Header_Images {
 		if ( is_numeric( $attachment_id ) ) {
 			$url = Custom_Image_Meta_Box::get_attachment_src( $attachment_id );
 			$title = Custom_Image_Meta_Box::get_attachment_title( $attachment_id );
-		} elseif ( is_string( $attachment_id ) ) {
-			$url = $attachment_id; // The attachment ID is actually the URL
-			$title = ''; // We don't know the title since it's an attachment
+		} else {
+
+			// Falling back to taxonomy meta plugin functionality
+			$attachment_id = get_metadata( 'taxonomy', $tag_ID, 'taxonomy-header-image', true );
+			if ( is_numeric( $attachment_id ) ) {
+				$url = Custom_Image_Meta_Box::get_attachment_src( $attachment_id );
+				$title = Custom_Image_Meta_Box::get_attachment_title( $attachment_id );
+			} elseif ( is_string( $attachment_id ) ) {
+				$url = $attachment_id; // The attachment ID is actually the URL
+				$title = ''; // We don't know the title since it's an attachment
+			}
+
 		}
 
 		?>

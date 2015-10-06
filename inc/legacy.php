@@ -54,3 +54,29 @@ function unique_header_fallback_images( $post_id ) {
 	return $attachment_id;
 }
 add_filter( 'unique_header_fallback_images', 'unique_header_fallback_images' );
+
+/**
+ * Older version of the plugin used the Taxonomy meta plugin for handling unique headers on taxonomy pages.
+ * Since WordPress now includes term meta built in, this plugin is not needed. It does however store it's
+ * data differently to the taxonmy meta plugin, and so this function is here to provide backwards compatibility
+ * with the original setup.
+ *
+ * Retrieve term meta field for a term.
+ *
+ * @param int $term_id Term ID.
+ * @param string $key The meta key to retrieve.
+ * @param bool $single Whether to return a single value.
+ * @return mixed Will be an array if $single is false. Will be value of meta data field if $single
+ */
+function get_legacy_term_meta( $term_id, $key, $single = false ) {
+	return get_metadata( 'taxonomy', $term_id, $key, $single );
+}
+
+/*
+ * Quick touchup to wpdb
+ */
+function legacy_wpdbfix() {
+	global $wpdb;
+	$wpdb->taxonomymeta = "{$wpdb->prefix}taxonomymeta";
+}
+add_action( 'init', 'legacy_wpdbfix' );
