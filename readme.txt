@@ -2,9 +2,9 @@
 Contributors: ryanhellyer
 Tags: custom-header, header, headers, images, page, post, plugin, image, images, categories, gallery, media, header-image, header-images, taxonomy, tag, category, posts, pages, taxonomies, post, page, unique, custom
 Donate link: https://geek.hellyer.kiwi/donate/
-Requires at least: 4.4
+Requires at least: 4.3
 Tested up to: 4.5
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 
 
 
@@ -18,7 +18,7 @@ The <a href="https://geek.hellyer.kiwi/products/unique-headers/">Unique Headers 
 This functionality also works with categories and tags.
 
 = Requirements =
-You must use a theme which utilizes the built-in custom header functionality of WordPress. If your theme implement it's own header functionality, then this plugin will not work with it. Custom headers on tags and categories only works with WordPress 4.4 or newer.
+You must use a theme which utilizes the built-in custom header functionality of WordPress. If your theme implement it's own header functionality, then this plugin will not work with it.
 
 = Language support =
 The plugin includes translations for the following languages:
@@ -45,7 +45,7 @@ Visit the <a href="https://geek.hellyer.kiwi/products/unique-headers/">Unique He
 == Frequently Asked Questions ==
 
 = Do I need to install an extra plugin for categories/tags support? =
-Only if you are using a version of WordPress older than 4.4. This functionality previously required the <a href="http://wordpress.org/extend/plugins/taxonomy-metadata/">Taxonomy Metadata plugin</a>, but as of WordPress 4.4, that plugin is no longer required as terms meta was added to WordPress core. Your old categories and tags header images will be retained, but you should make sure that the taxonomy metadata plugin has upgraded your data before deactivating it.
+No. This functionality previously required the <a href="http://wordpress.org/extend/plugins/taxonomy-metadata/">Taxonomy Metadata plugin</a>, but as of WordPress 4.4, that plugin is no longer required as terms meta was added to WordPress core. Your old categories and tags header images will be retained, but you should make sure that the taxonomy metadata plugin has upgraded your data before deactivating it.
 
 = Your plugin doesn't work =
 Actually, it does work ;) The problem is likely with your theme. Some themes have "custom headers", but don't use the built-in WordPress custom header system and will not work with the Unique Headers plugin because of this. It is not possible to predict how other custom header systems work, and so those can not be supported by this plugin. To test if this is the problem, simply switch to one of the default themes which come with WordPress and see if the plugin works with those, if it does, then your theme is at fault.
@@ -126,11 +126,12 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 
 == Changelog ==
 
-Version 1.4.1: Documentation improvements.<br />
-Version 1.4: Adding backwards compatibility to maintain header images provided by the Taxonomy metadata plugin.<br />
-Version 1.3.12: Added French language translation.<br />
-Version 1.3.11: Moved instantiation and localization code into a class.<br />
-Version 1.3.10: Added Deutsch (German) language translation.<br />
+Version 1.4.2: Adding a plugin review class.
+Version 1.4.1: Instantiating the plugin later (allows for adding additional post-types in themes).
+Version 1.4: Adding backwards compatibility to maintain header images provided by the Taxonomy metadata plugin.
+Version 1.3.12: Added French language translation.
+Version 1.3.11: Moved instantiation and localization code into a class.
+Version 1.3.10: Added Deutsch (German) language translation.
 Version 1.3.9: Fixing error which caused header images to disappear on upgrading (data was still available just not accessed correctly).<br />
 Version 1.3.8: Modification translation system to work with changes on WordPress.org.<br />
 Version 1.3.7: Addition of Spanish translation<br />
@@ -153,5 +154,5 @@ Thanks to the following for help with the development of this plugin:<br />
 * <a href="http://www.graphicana.de/">Tobias Klotz</a> - Deutsch (German) language translation.
 * <a href="http://nakri.co.uk/">Nadia Tokerud</a> - Proof-reading of Norsk Bokmål (Norwegian) translation (coming soon)<br />
 * <a href="http://bjornjohansen.no/">Bjørn Johansen</a> - Proof-reading of Norwegian Bokmål translation (coming soon)<br />
-* <a href="https://www.facebook.com/kaljam/">Karl Olofsson</a> - Proof-reading of Swedish translation<br />
+* <a href="https://www.facebook.com/kaljam/">Karl Olofsson</a> - Proof-reading of Swedish translation (coming soon)<br />
 * <a href="http://www.jennybeaumont.com/">Jenny Beaumont</a> - French translation (coming soon)<br />

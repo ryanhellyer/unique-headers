@@ -3,7 +3,7 @@
 Plugin Name: Unique Headers
 Plugin URI: https://geek.hellyer.kiwi/plugins/unique-headers/
 Description: Unique Headers
-Version: 1.4.1
+Version: 1.4.2
 Author: Ryan Hellyer
 Author URI: https://geek.hellyer.kiwi/
 Text Domain: unique-headers
@@ -42,18 +42,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 /**
- * Load classes
- * 
- * @since 1.0
- * @author Ryan Hellyer <ryanhellyer@gmail.com>
- */
-require( 'inc/class-unique-headers-taxonomy-header-images.php' );
-require( 'inc/class-unique-headers-display.php' );
-require( 'inc/class-custom-image-meta-box.php' );
-require( 'inc/legacy.php' );
-
-
-/**
  * Add a custom image meta box
  *
  * @copyright Copyright (c), Ryan Hellyer
@@ -70,8 +58,28 @@ class Unique_Headers_Instantiate {
 	 * @since 1.3.10
 	 */
 	public function __construct() {
+
+		// Load classes
+		require( 'inc/class-unique-headers-taxonomy-header-images.php' );
+		require( 'inc/class-unique-headers-display.php' );
+		require( 'inc/class-custom-image-meta-box.php' );
+		require( 'inc/legacy.php' );
+
+		// Loading dotorg plugin review code
+		if ( is_admin() ) {
+			require( 'inc/class-dotorg-plugin-review.php' );
+			new DotOrg_Plugin_Review(
+				array(
+					'slug'        => 'unique-headers', // The plugin slug
+					'name'        => 'Unique Headers', // The plugin name
+					'time_limit'  => MINUTE_IN_SECONDS,  // The time limit at which notice is shown
+				)
+			);
+		}
+
+		// Add hooks
 		add_action( 'plugins_loaded', array( $this, 'localization' ), 5 );
-		add_action( 'plugins_loaded', array( $this, 'instantiate_classes' ) );
+		add_action( 'init', array( $this, 'instantiate_classes' ) );
 	}
 
 
