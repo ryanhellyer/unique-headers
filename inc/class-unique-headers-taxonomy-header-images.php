@@ -92,16 +92,17 @@ class Unique_Header_Taxonomy_Header_Images {
 		$this->taxonomies          = $args['taxonomies'];
 		$this->upload_header_image = $args['upload_header_image'];
 
-		add_action( 'init', array( $this, 'init' ) );
+		add_action( 'admin_init',             array( $this, 'add_fields' ) );
+		add_filter( 'theme_mod_header_image', array( $this, 'header_image_filter' ), 5 );
 	}
 
 	/**
-	 * Print styles to admin page
+	 * Adding fields to taxonomy pages.
 	 *
 	 * @author Ryan Hellyer <ryanhellyer@gmail.com>
 	 * @since 1.0
 	 */
-	public function init() {
+	public function add_fields() {
 
 		// Add actions for administration pages
 		if ( is_admin() ) {
@@ -113,8 +114,6 @@ class Unique_Header_Taxonomy_Header_Images {
 			}
 
  		}
-
-		add_filter( 'theme_mod_header_image',        array( $this, 'header_image_filter' ), 5 );
 
 	}
 
@@ -183,10 +182,10 @@ class Unique_Header_Taxonomy_Header_Images {
 
 		// Only use new URL if it isn't blank ... 
 		if ( '' != $new_url ) {
-			$url = $new_url;
+			$url = esc_url( $new_url );
 		}
 
-		return esc_url ( $url );
+		return $url; // Do not escape here, as WordPress sometimes assigns non-URLs for the header image
 	}
 
 	/**

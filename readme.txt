@@ -4,7 +4,7 @@ Tags: custom-header, header, headers, images, page, post, plugin, image, images,
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
 Tested up to: 4.5
-Stable tag: 1.4.2
+Stable tag: 1.4.8
 
 
 
@@ -126,6 +126,12 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 
 == Changelog ==
 
+Version 1.4.8: Fixing a bug triggered by WordPress assigning non-URL's as the URL.
+Version 1.4.7: Setting a more sane plugin review time.
+Version 1.4.6: Fixing bug with handling taxonomies. Added plugin review notice back, but without the non-existent MONTH_IN_SECONDS constant.
+Version 1.4.5: Removing plugin review notice due to unsolvable errors.
+Version 1.4.4: Adding plugin review class back, with correct time stamp set.
+Version 1.4.3: Temporarily removing plugin review class until bugs are fixed.
 Version 1.4.2: Adding a plugin review class.
 Version 1.4.1: Instantiating the plugin later (allows for adding additional post-types in themes).
 Version 1.4: Adding backwards compatibility to maintain header images provided by the Taxonomy metadata plugin.

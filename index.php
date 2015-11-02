@@ -3,7 +3,7 @@
 Plugin Name: Unique Headers
 Plugin URI: https://geek.hellyer.kiwi/plugins/unique-headers/
 Description: Unique Headers
-Version: 1.4.2
+Version: 1.4.8
 Author: Ryan Hellyer
 Author URI: https://geek.hellyer.kiwi/
 Text Domain: unique-headers
@@ -72,7 +72,7 @@ class Unique_Headers_Instantiate {
 				array(
 					'slug'        => 'unique-headers', // The plugin slug
 					'name'        => 'Unique Headers', // The plugin name
-					'time_limit'  => MINUTE_IN_SECONDS,  // The time limit at which notice is shown
+					'time_limit'  => WEEK_IN_SECONDS,  // The time limit at which notice is shown
 				)
 			);
 		}

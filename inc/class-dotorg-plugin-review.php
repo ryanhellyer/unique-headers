@@ -53,23 +53,15 @@ class DotOrg_Plugin_Review {
 	public function seconds_to_words( $seconds ) {
 
 		// Get the years
-		$years = ( intval( $seconds ) / MONTH_IN_SECONDS ) % 4;
+		$years = ( intval( $seconds ) / YEAR_IN_SECONDS ) % 100;
 		if ( $years > 1 ) {
 			return sprintf( __( '%s years', $this->slug ), $years );
 		} elseif ( $years > 0) {
 			return __( 'a year', $this->slug );
 		}
 
-		// Get the months
-		$months = ( intval( $seconds ) / MONTH_IN_SECONDS ) % 4;
-		if ( $months > 1 ) {
-			return sprintf( __( '%s months', $this->slug ), $months );
-		} elseif ( $months > 0) {
-			return __( 'a month', $this->slug );
-		}
-
 		// Get the weeks
-		$weeks = ( intval( $seconds ) / WEEK_IN_SECONDS ) % 4;
+		$weeks = ( intval( $seconds ) / WEEK_IN_SECONDS ) % 52;
 		if ( $weeks > 1 ) {
 			return sprintf( __( '%s weeks', $this->slug ), $weeks );
 		} elseif ( $weeks > 0) {
