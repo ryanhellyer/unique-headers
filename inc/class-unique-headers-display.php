@@ -52,21 +52,27 @@ class Unique_Headers_Display {
 	 */
 	public function header_image_filter( $url ) {
 
-		// Bail out now if not in post or page
-		if ( ! is_single() && ! is_page() ) {
+		// Bail out now if not in post (is_single or is_page) or blog (is_home)
+		if ( ! is_single() && ! is_page() && ! is_home() ) {
 			return $url;
 		}
 
-		// Get custom URL
-		$attachment_id = Custom_Image_Meta_Box::get_attachment_id( get_the_ID(), $this->name_underscores );
-		$custom_url = Custom_Image_Meta_Box::get_attachment_src( $attachment_id );
-
-		// If custom URL doesn't exist, then output original URL
-		if ( false == $custom_url ) {
-			return $url;
+		// Get current post ID (if on blog, then checks current posts page for it's ID)
+		if ( is_home() ) {
+			$post_id = get_option( 'page_for_posts' );
+		} else {
+			$post_id = get_the_ID();
 		}
 
-		return $custom_url;
+		// Get attachment ID
+		$attachment_id = Custom_Image_Meta_Box::get_attachment_id( $post_id, $this->name_underscores );
+
+		// Generate new URL
+		if ( is_numeric( $attachment_id ) ) {
+			$url = Custom_Image_Meta_Box::get_attachment_src( $attachment_id );
+		}
+
+		return $url;
 	}
 
 }

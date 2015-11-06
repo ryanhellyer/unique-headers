@@ -3,7 +3,7 @@
 Plugin Name: Unique Headers
 Plugin URI: https://geek.hellyer.kiwi/plugins/unique-headers/
 Description: Unique Headers
-Version: 1.4.8
+Version: 1.5
 Author: Ryan Hellyer
 Author URI: https://geek.hellyer.kiwi/
 Text Domain: unique-headers
@@ -109,7 +109,12 @@ class Unique_Headers_Instantiate {
 
 		// Add support for taxonomies
 		if ( function_exists( 'get_term_meta' ) ) {
-			$args['taxonomies']          = apply_filters( 'unique_headers_taxonomies', array( 'category', 'post_tag' ) );
+
+
+			// Add support for publicly available taxonomies
+			$args['taxonomies'] = apply_filters( 'unique_headers_taxonomies', get_taxonomies( array( 'public'=>true ) ) );
+
+			// Add upload text
 			$args['upload_header_image'] = __( 'Upload header image', 'unique-headers' );
 
 			new Unique_Header_Taxonomy_Header_Images( $args );
