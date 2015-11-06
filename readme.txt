@@ -18,7 +18,7 @@ The <a href="https://geek.hellyer.kiwi/products/unique-headers/">Unique Headers 
 This functionality also works with categories and tags.
 
 = Requirements =
-You must use a theme which utilizes the built-in custom header functionality of WordPress. If your theme implement it's own header functionality, then this plugin will not work with it.
+You must use a theme which utilizes the built-in custom header functionality of WordPress. If your theme implement its own header functionality, then this plugin will not work with it.
 
 = Language support =
 The plugin includes translations for the following languages:
@@ -35,7 +35,7 @@ After you've downloaded and extracted the files:
 
 1. Upload the complete 'unique-headers' folder to the '/wp-content/plugins/' directory OR install via the plugin installer
 2. Activate the plugin through the 'Plugins' menu in WordPress
-4. And yer done!
+3. And yer done!
 
 Now you will see a new custom header image uploader whilst editing posts, pages, tags or categories on your site.
 
@@ -54,7 +54,7 @@ Actually, it does work ;) The problem is likely with your theme. Some themes hav
 This is a complex question and not something I can teach in a short FAQ. I recommend hiring a professional WordPress developer for assistance, or asking the developer of your theme to add support for the built-in WordPress custom header system.
 
 = Does it work with custom post-types? =
-Not out of the box, but you can modify the following code to add support to suit your own requirements. You can can add this code to either your theme or to a custom plugin. You will need to modify the post-type to suit your own requirements. Some knowledge of PHP coding is necessary for this step.
+Not out of the box, but you can modify the following code to add support to suit your own requirements. You can add this code to either your theme or to a custom plugin. You will need to modify the post-type to suit your own requirements. Some knowledge of PHP coding is necessary for this step.
 
 `
 <?php
@@ -76,7 +76,7 @@ add_filter( 'unique_headers_post_types', 'unique_headers_add_post_type' );
 `
 
 = Does it work with taxonomies? =
-As with custom post-types, not out of the box. You can however modify the following code to add support to suit your own requirements. You can can add this code to either your theme or to a custom plugin. You will need to modify the taxonomy to suit your own requirements. Some knowledge of PHP coding is necessary for this step.
+As with custom post-types, not out of the box. You can however modify the following code to add support to suit your own requirements. You can add this code to either your theme or to a custom plugin. You will need to modify the taxonomy to suit your own requirements. Some knowledge of PHP coding is necessary for this step.
 
 `
 <?php
@@ -141,8 +141,8 @@ Version 1.3.10: Added Deutsch (German) language translation.
 Version 1.3.9: Fixing error which caused header images to disappear on upgrading (data was still available just not accessed correctly).<br />
 Version 1.3.8: Modification translation system to work with changes on WordPress.org.<br />
 Version 1.3.7: Addition of Spanish translation<br />
-Version 1.3.1: Adjustment to match post meta key to other plugins, for compatibilty reasons.<br />
-Version 1.3: Total rewrite to use custom built in system for media uploads. Also adapted taxonomies to use ID's and added support for extra post-types and taxonomies.<br />
+Version 1.3.1: Adjustment to match post meta key to other plugins, for compatibility reasons.<br />
+Version 1.3: Total rewrite to use custom built-in system for media uploads. Also adapted taxonomies to use ID's and added support for extra post-types and taxonomies.<br />
 Version 1.2: Converted to use the class from the Multiple Featured Images plugin<br />
 Version 1.1: Added support for tags <br />
 Version 1.0.4: Added support for displaying a category specific image on the single post pages<br />
