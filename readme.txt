@@ -128,90 +128,91 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 
 
 = 1.5 =
-Introduced unlimited taxonomy support.
-All publicly viewable taxonomies will have the ability to add customer headers.
-When using a blog page set to a static page URL, the image from the static pages custom header will be used.
+* Introduced unlimited taxonomy support.
+* When using a blog page set to a static page URL, the image from the static pages custom header will be used.
+* Adding support for all publicly viewable post-types.
+* Adding support for all publicly viewable taxonomies.
 
 = 1.4.8 =
-Fixing a bug triggered by WordPress assigning non-URL's as the URL.
+* Fixing a bug triggered by WordPress assigning non-URL's as the URL.
 
 = 1.4.7
-Setting a more sane plugin review time.
+* Setting a more sane plugin review time.
 
 = 1.4.6 =
-Fixing bug with handling taxonomies. Added plugin review notice back, but without the non-existent MONTH_IN_SECONDS constant.
+* Fixing bug with handling taxonomies. Added plugin review notice back, but without the non-existent MONTH_IN_SECONDS constant.
 
 = 1.4.5 =
-Removing plugin review notice due to unsolvable errors.
+* Removing plugin review notice due to unsolvable errors.
 
 = 1.4.4 =
-Adding plugin review class back, with correct time stamp set.
+* Adding plugin review class back, with correct time stamp set.
 
 = 1.4.3 =
-Temporarily removing plugin review class until bugs are fixed.
+* Temporarily removing plugin review class until bugs are fixed.
 
 = 1.4.2 =
-Adding a plugin review class.
+* Adding a plugin review class.
 
 = 1.4.1 =
-Instantiating the plugin later (allows for adding additional post-types in themes).
+* Instantiating the plugin later (allows for adding additional post-types in themes).
 
 = 1.4 =
-Adding backwards compatibility to maintain header images provided by the Taxonomy metadata plugin.
+* Adding backwards compatibility to maintain header images provided by the Taxonomy metadata plugin.
 
 = 1.3.12 =
-Added French language translation.
+* Added French language translation.
 
 = 1.3.11 =
-Moved instantiation and localization code into a class.
+* Moved instantiation and localization code into a class.
 
 = 1.3.10 =
-Added Deutsch (German) language translation.
+* Added Deutsch (German) language translation.
 
 = 1.3.9 =
-Fixing error which caused header images to disappear on upgrading (data was still available just not accessed correctly).
+* Fixing error which caused header images to disappear on upgrading (data was still available just not accessed correctly).
 
 = 1.3.8 =
-Modification translation system to work with changes on WordPress.org.
+* Modification translation system to work with changes on WordPress.org.
 
 = 1.3.7 =
-Addition of Spanish translation.
+* Addition of Spanish translation.
 
 = 1.3.1 =
-Adjustment to match post meta key to other plugins, for compatibilty reasons.
+* Adjustment to match post meta key to other plugins, for compatibilty reasons.
 
 = 1.3 =
-Total rewrite to use custom built in system for media uploads. Also adapted taxonomies to use ID's and added support for extra post-types and taxonomies.
+* Total rewrite to use custom built in system for media uploads. Also adapted taxonomies to use ID's and added support for extra post-types and taxonomies.
 
 = 1.2 =
-Converted to use the class from the Multiple Featured Images plugin.
+* Converted to use the class from the Multiple Featured Images plugin.
 
 = 1.1 =
-Added support for tags.
+* Added support for tags.
 
 = 1.0.4 =
-Added support for displaying a category specific image on the single post pages.
+* Added support for displaying a category specific image on the single post pages.
 
 = 1.0.3 =
-Correction for $new_url for categories.
+* Correction for $new_url for categories.
 
 = 1.0.2 =
-Bug fix to allow default header to display when no category specified.
+* Bug fix to allow default header to display when no category specified.
 
 = 1.0.1 =
-Bug fixes for post/page thumbnails.
+* Bug fixes for post/page thumbnails.
 
 = 1.0 =
-Initial release.
+* Initial release.
 
 
 = Credits =
 
 Thanks to the following for help with the development of this plugin:<br />
-* <a href="http://onmytodd.org">Todd</a> - Assistance with implementing support for tags<br />
-* <a href="http://westoresolutions.com/">Mariano J. Ponce</a> - Spanish translation<br />
+* <a href="http://onmytodd.org">Todd</a> - Assistance with implementing support for tags.
+* <a href="http://westoresolutions.com/">Mariano J. Ponce</a> - Spanish translation.
 * <a href="http://www.graphicana.de/">Tobias Klotz</a> - Deutsch (German) language translation.
-* <a href="http://nakri.co.uk/">Nadia Tokerud</a> - Proof-reading of Norsk Bokmål (Norwegian) translation (coming soon)<br />
-* <a href="http://bjornjohansen.no/">Bjørn Johansen</a> - Proof-reading of Norwegian Bokmål translation (coming soon)<br />
-* <a href="https://www.facebook.com/kaljam/">Karl Olofsson</a> - Proof-reading of Swedish translation (coming soon)<br />
-* <a href="http://www.jennybeaumont.com/">Jenny Beaumont</a> - French translation (coming soon)<br />
+* <a href="http://nakri.co.uk/">Nadia Tokerud</a> - Proof-reading of Norsk Bokmål (Norwegian) translation.
+* <a href="http://bjornjohansen.no/">Bjørn Johansen</a> - Proof-reading of Norwegian Bokmål translation.
+* <a href="https://www.facebook.com/kaljam/">Karl Olofsson</a> - Proof-reading of Swedish translation.
+* <a href="http://www.jennybeaumont.com/">Jenny Beaumont</a> - French translation.

@@ -97,7 +97,7 @@ class Unique_Headers_Instantiate {
 			'title'               => __( 'Custom header', 'unique-headers' ),
 			'set_custom_image'    => __( 'Set Custom Header Image', 'unique-headers' ),
 			'remove_custom_image' => __( 'Remove Custom Header Image', 'unique-headers' ),
-			'post_types'          => apply_filters( 'unique_headers_post_types', array( 'post', 'page' ) ),
+			'post_types'          => get_post_types( array( 'public' => true ) ),
 		);
 
 		// Add support for post-types
@@ -107,12 +107,11 @@ class Unique_Headers_Instantiate {
 			new Unique_Headers_Display( array( 'name' => $name ) );
 		}
 
-		// Add support for taxonomies
+		// Add support for taxonomies (this conditional can be removed after the release of WordPress 4.4 - plus the taxonmies argument above can be moved into the main array then)
 		if ( function_exists( 'get_term_meta' ) ) {
 
-
-			// Add support for publicly available taxonomies
-			$args['taxonomies'] = apply_filters( 'unique_headers_taxonomies', get_taxonomies( array( 'public'=>true ) ) );
+			// Add support for publicly available taxonomies - this can be moved into the main arguments array above after the release of WordPress 4.4
+			$args['taxonomies'] = get_taxonomies( array( 'public'=>true ) );
 
 			// Add upload text
 			$args['upload_header_image'] = __( 'Upload header image', 'unique-headers' );
