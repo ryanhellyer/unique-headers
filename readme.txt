@@ -47,6 +47,11 @@ Visit the <a href="https://geek.hellyer.kiwi/products/unique-headers/">Unique He
 = Do I need to install an extra plugin for categories/tags support? =
 No. This functionality previously required the <a href="http://wordpress.org/extend/plugins/taxonomy-metadata/">Taxonomy Metadata plugin</a>, but as of WordPress 4.4, that plugin is no longer required as terms meta was added to WordPress core. Your old categories and tags header images will be retained, but you should make sure that the taxonomy metadata plugin has upgraded your data before deactivating it.
 
+= I set a category header image, but why are my individual posts not showing that header image? =
+Setting a category (or other taxonomy) header image, only causes that header image to show on the category page itself. It does not make the header image show on the single posts of that category.
+
+To add this functionality, please install the <a href="https://geek.hellyer.kiwi/plugins/unique-headers-single-posts/">Unique Headers single posts extension plugin</a>.
+
 = Your plugin doesn't work =
 Actually, it does work ;) The problem is likely with your theme. Some themes have "custom headers", but don't use the built-in WordPress custom header system and will not work with the Unique Headers plugin because of this. It is not possible to predict how other custom header systems work, and so those can not be supported by this plugin. To test if this is the problem, simply switch to one of the default themes which come with WordPress and see if the plugin works with those, if it does, then your theme is at fault.
 
