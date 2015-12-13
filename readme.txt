@@ -4,7 +4,7 @@ Tags: custom-header, header, headers, images, page, post, plugin, image, images,
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
 Tested up to: 4.5
-Stable tag: 1.5
+Stable tag: 1.5.1
 
 
 
@@ -26,7 +26,7 @@ The plugin includes translations for the following languages:
 1. Spanish - provided by <a href="http://westoresolutions.com/">Mariano J. Ponce</a>
 2. German - provided by <a href="http://www.graphicana.de/">Tobias Klotz</a>
 3. French - provided by <a href="http://www.jennybeaumont.com/">Jenny Beaumont</a>
-4. Swedish - provided by <a href="https://twitter.com/CyanAlice">Alice Carlsson</a>
+4. Swedish - provided by <a href="https:r//twitter.com/CyanAlice">Alice Carlsson</a>
 
 
 == Installation ==
@@ -44,8 +44,8 @@ Visit the <a href="https://geek.hellyer.kiwi/products/unique-headers/">Unique He
 
 == Frequently Asked Questions ==
 
-= Do I need to install an extra plugin for categories/tags support? =
-No. This functionality previously required the <a href="http://wordpress.org/extend/plugins/taxonomy-metadata/">Taxonomy Metadata plugin</a>, but as of WordPress 4.4, that plugin is no longer required as terms meta was added to WordPress core. Your old categories and tags header images will be retained, but you should make sure that the taxonomy metadata plugin has upgraded your data before deactivating it.
+= I upgraded to WordPress 4.4 and the taxonomy meta plugin broke. What should I do? =
+Older versions of WordPress required the taxonomy meta data plugin to add support for categories and tags. However, that functionality was rolled into the core of WordPress 4.4 and the old plugin stopped working with no upgrade path. You can simply delete the plugin, and your site will behave as normal, but the old header images for categories and tags will be missing. To work around this problem, please <a href="https://wordpress.org/support/topic/wordpress-44-fatal-error?replies=9#post-7762404">follow the instructions in this helpful support thread</a> for that plugin. Please note that I am not connected with the taxonomy meta data plugin and can not provide any assistance with it.
 
 = I set a category header image, but why are my individual posts not showing that header image? =
 Setting a category (or other taxonomy) header image, only causes that header image to show on the category page itself. It does not make the header image show on the single posts of that category.
@@ -59,47 +59,13 @@ Actually, it does work ;) The problem is likely with your theme. Some themes hav
 This is a complex question and not something I can teach in a short FAQ. I recommend hiring a professional WordPress developer for assistance, or asking the developer of your theme to add support for the built-in WordPress custom header system.
 
 = Does it work with custom post-types? =
-Not out of the box, but you can modify the following code to add support to suit your own requirements. You can can add this code to either your theme or to a custom plugin. You will need to modify the post-type to suit your own requirements. Some knowledge of PHP coding is necessary for this step.
 
-`
-<?php
-
-/*
- * Add support for a post-type called "some-post-type"
- *
- * @param   array   $post_types   The currently supported post-types
- * @return  array   $post_types   The modified list of supported post-types
- */
-function unique_headers_add_post_type( $post_types ) {
-	$post_types[] = 'some-post-type';
-
-	return $post_types;
-}
-add_filter( 'unique_headers_post_types', 'unique_headers_add_post_type' );
-
-?>
-`
+Yes, as of version 1.5, support for publicly viewable custom post-types was added by default.
 
 = Does it work with taxonomies? =
-As with custom post-types, not out of the box. You can however modify the following code to add support to suit your own requirements. You can can add this code to either your theme or to a custom plugin. You will need to modify the taxonomy to suit your own requirements. Some knowledge of PHP coding is necessary for this step.
 
-`
-<?php
+Yes, as of version 1.5 of the Unique Headers plugin and version 4.4 of WordPress, support for all publicly viewable custom taxonomies was added by default.
 
-/*
- * Add support for a taxonomy called "some-taxonomy"
- *
- * @param   array   $taxonomies   The currently supported taxonomies
- * @return  array   $taxonomies   The modified list of supported taxonomies
- */
-function unique_headers_add_taxonomy( $taxonomies ) {
-	$taxonomies[] = 'some-taxonomy';
-	return $taxonomies;
-}
-add_filter( 'unique_headers_taxonomies', 'unique_headers_add_taxonomy' );
-
-?>
-`
 
 = Where's the plugin settings page? =
 
@@ -131,6 +97,9 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 
 == Changelog ==
 
+
+= 1.5.1 =
+* Overhauled outdated FAQ section of readme.
 
 = 1.5 =
 * Introduced unlimited taxonomy support.
