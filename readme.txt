@@ -4,7 +4,7 @@ Tags: custom-header, header, headers, images, page, post, plugin, image, images,
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
 Tested up to: 4.5
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 
 
 
@@ -97,6 +97,8 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 
 == Changelog ==
 
+= 1.5.2 =
+* Fixing bug reported by multiple users, which caused PHP errors on some setups.
 
 = 1.5.1 =
 * Overhauled outdated FAQ section of readme.

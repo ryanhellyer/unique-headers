@@ -63,6 +63,12 @@ add_filter( 'unique_header_fallback_images', 'unique_header_fallback_images' );
  * @global  object  $wpdb  The main WordPress database object
  */
 function unique_header_wpdbfix() {
+
+	// Bail out now if Taxonomy Metadata plugin not installed
+	if ( class_exists( 'Taxonomy_Metadata' ) ) {
+		return;
+	}
+
 	global $wpdb;
 	$wpdb->taxonomymeta = "{$wpdb->prefix}taxonomymeta";
 }
