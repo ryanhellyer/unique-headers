@@ -65,7 +65,7 @@ add_filter( 'unique_header_fallback_images', 'unique_header_fallback_images' );
 function unique_header_wpdbfix() {
 
 	// Bail out now if Taxonomy Metadata plugin not installed
-	if ( class_exists( 'Taxonomy_Metadata' ) ) {
+	if ( ! class_exists( 'Taxonomy_Metadata' ) ) {
 		return;
 	}
 
