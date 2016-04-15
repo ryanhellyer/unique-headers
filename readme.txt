@@ -4,7 +4,7 @@ Tags: custom-header, header, headers, images, page, post, plugin, image, images,
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
 Tested up to: 4.5
-Stable tag: 1.5.3
+Stable tag: 1.6
 
 
 
@@ -96,6 +96,9 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 
 
 == Changelog ==
+
+= 1.6 =
+* Removed admin notice from everywhere but the plugins page.
 
 = 1.5.3 =
 * Fixing flawed bug fix from version 1.5.2.
