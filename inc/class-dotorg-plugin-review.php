@@ -7,6 +7,7 @@
  * Heavily based on code by Rhys Wynne
  * https://winwar.co.uk/2014/10/ask-wordpress-plugin-reviews-week/
  *
+ * @version   1.0
  * @copyright Copyright (c), Ryan Hellyer
  * @author Ryan Hellyer <ryanhellyer@gmail.com>
  */
@@ -130,19 +131,23 @@ class DotOrg_Plugin_Review {
 	 */
 	public function display_admin_notice() {
 
-		$no_bug_url = wp_nonce_url( admin_url( '?' . $this->nobug_option . '=true' ), 'review-nonce' );
+		$screen = get_current_screen(); 
+		if ( isset( $screen->base ) && 'plugins' == $screen->base ) {
 
-		$time = $this->seconds_to_words( time() - get_site_option( $this->slug . '-activation-date' ) );
+			$no_bug_url = wp_nonce_url( admin_url( '?' . $this->nobug_option . '=true' ), 'review-nonce' );
+			$time = $this->seconds_to_words( time() - get_site_option( $this->slug . '-activation-date' ) );
 
-		echo '
-		<div class="updated">
-			<p>' . sprintf( __( 'You have been using the %s plugin for %s now, do you like it? If so, please leave us a review with your feedback!', 'spam-destroyer' ), $this->name, $time ) . '
-				<br /><br />
-				<a onclick="location.href=\'' . esc_url( $no_bug_url ) . '\';" class="button button-primary" href="' . esc_url( 'https://wordpress.org/support/view/plugin-reviews/' . $this->slug . '#postform' ) . '" target="_blank">' . __( 'Leave A Review', 'spam-destroyer' ) . '</a>
-				   
-				<a href="' . esc_url( $no_bug_url ) . '">' . __( 'No thanks.', 'spam-destroyer' ) . '</a>
-			</p>
-		</div>';
+			echo '
+			<div class="updated">
+				<p>' . sprintf( __( 'You have been using the %s plugin for %s now, do you like it? If so, please leave us a review with your feedback!', 'spam-destroyer' ), $this->name, $time ) . '
+					<br /><br />
+					<a onclick="location.href=\'' . esc_url( $no_bug_url ) . '\';" class="button button-primary" href="' . esc_url( 'https://wordpress.org/support/view/plugin-reviews/' . $this->slug . '#postform' ) . '" target="_blank">' . __( 'Leave A Review', 'spam-destroyer' ) . '</a>
+					   
+					<a href="' . esc_url( $no_bug_url ) . '">' . __( 'No thanks.', 'spam-destroyer' ) . '</a>
+				</p>
+			</div>';
+
+		}
 
 	}
 
