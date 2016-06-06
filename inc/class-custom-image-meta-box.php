@@ -137,8 +137,11 @@ class Custom_Image_Meta_Box {
 	 */
 	static function get_attachment_src( $attachment_id ) {
 
+		// Set image size to `full` by default
+		$image_size = apply_filters( 'unique_header_attachment_image_size', 'full' );
+
 		// Grab URL from WordPress
-		$url = wp_get_attachment_image_src( $attachment_id, 'full' );
+		$url = wp_get_attachment_image_src( $attachment_id, $image_size );
 		$url = $url[0];
 
 		return $url;

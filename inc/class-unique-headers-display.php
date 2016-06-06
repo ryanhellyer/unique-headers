@@ -38,10 +38,35 @@ class Unique_Headers_Display {
 	public function __construct( $args ) {
 		$this->name_underscores    = str_replace( '-', '_', $args['name'] );
 
+		// Add filter for post header image to load custom url with possible custom image size
+		// Hook first to ensure it loads before other header-image filters
+		add_filter( 'theme_mod_header_image', array( $this, 'header_image_custom_image_size' ), 1 );
+
 		// Add filter for post header image (uses increased priority to ensure that single post thumbnails aren't overridden by category images)
 		add_filter( 'theme_mod_header_image', array( $this, 'header_image_filter' ), 20 );
 
 	}
+
+	/*
+	 * Filter for modifying image size used in url of get_header()
+	 *
+	 * @since 1.7
+	 * @param    string     $url         The header image URL
+	 * @return   string     $custom_url  The new custom header image URL
+	 */
+	public function header_image_custom_image_size( $url ) {
+
+		// Default header image 
+		$default_header_image = get_theme_mod( 'header_image_data' );
+
+		// Set default header image as url
+		if ( is_numeric( $default_header_image->attachment_id ) ) {
+			$url = Custom_Image_Meta_Box::get_attachment_src( $default_header_image->attachment_id );
+		}
+
+		return $url;
+	}
+
 
 	/*
 	 * Filter for modifying the output of get_header()
