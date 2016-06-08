@@ -97,6 +97,9 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 
 == Changelog ==
 
+= 1.7.1 =
+* Fixing bug which caused errors when theme doesn't support custom-header
+
 = 1.7 =
 * Added support for custom image size
 

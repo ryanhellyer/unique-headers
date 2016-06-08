@@ -59,9 +59,12 @@ class Unique_Headers_Display {
 		// Default header image 
 		$default_header_image = get_theme_mod( 'header_image_data' );
 
+		// Get the attachment_id of the header-image
+		$default_header_image_id = (is_object($default_header_image) && !empty($default_header_image->attachment_id)) ? $default_header_image->attachment_id : '';
+
 		// Set default header image as url
-		if ( is_numeric( $default_header_image->attachment_id ) ) {
-			$url = Custom_Image_Meta_Box::get_attachment_src( $default_header_image->attachment_id );
+		if ( is_numeric( $default_header_image_id ) ) {
+			$url = Custom_Image_Meta_Box::get_attachment_src( $default_header_image_id );
 		}
 
 		return $url;
