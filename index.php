@@ -3,7 +3,7 @@
 Plugin Name: Unique Headers
 Plugin URI: https://geek.hellyer.kiwi/plugins/unique-headers/
 Description: Unique Headers
-Version: 1.6
+Version: 1.6.1
 Author: Ryan Hellyer
 Author URI: https://geek.hellyer.kiwi/
 Text Domain: unique-headers
@@ -79,9 +79,8 @@ class Unique_Headers_Instantiate {
 
 		// Add hooks
 		add_action( 'plugins_loaded', array( $this, 'localization' ), 5 );
-		add_action( 'init', array( $this, 'instantiate_classes' ) );
+		add_action( 'init', array( $this, 'instantiate_classes' ), 20 );
 	}
-
 
 	/**
 	 * Instantiate classes
