@@ -3,7 +3,7 @@ Contributors: ryanhellyer
 Tags: custom-header, header, headers, images, page, post, plugin, image, images, categories, gallery, media, header-image, header-images, taxonomy, tag, category, posts, pages, taxonomies, post, page, unique, custom
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
-Tested up to: 4.5
+Tested up to: 4.6
 Stable tag: 1.6.1
 
 
