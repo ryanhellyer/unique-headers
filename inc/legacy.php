@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Do not continue processing since file was called directly
+ * 
+ * @since 1.6.1
+ * @author Ryan Hellyer <ryanhellyer@gmail.com>
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Eh! What you doin in here?' );
+}
+
 /*
  * Legacy fallback for old images
  *
