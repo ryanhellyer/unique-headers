@@ -58,26 +58,19 @@ class Unique_Headers_Display {
 			return $url;
 		}
 
-		// Caching since srcset may run this repeatedly
-		$url = wp_cache_get( 'unique_header_url' );
-		if ( false === $url ) {
+		// Get current post ID (if on blog, then checks current posts page for it's ID)
+		if ( is_home() ) {
+			$post_id = get_option( 'page_for_posts' );
+		} else {
+			$post_id = get_the_ID();
+		}
 
-			// Get current post ID (if on blog, then checks current posts page for it's ID)
-			if ( is_home() ) {
-				$post_id = get_option( 'page_for_posts' );
-			} else {
-				$post_id = get_the_ID();
-			}
+		// Get attachment ID
+		$attachment_id = Custom_Image_Meta_Box::get_attachment_id( $post_id, $this->name_underscores );
 
-			// Get attachment ID
-			$attachment_id = Custom_Image_Meta_Box::get_attachment_id( $post_id, $this->name_underscores );
-
-			// Generate new URL
-			if ( is_numeric( $attachment_id ) ) {
-				$url = Custom_Image_Meta_Box::get_attachment_src( $attachment_id );
-			}
-
-			wp_cache_set( 'unique_header_url', $url );
+		// Generate new URL
+		if ( is_numeric( $attachment_id ) ) {
+			$url = Custom_Image_Meta_Box::get_attachment_src( $attachment_id );
 		}
 
 		return $url;
@@ -98,6 +91,7 @@ class Unique_Headers_Display {
 	 * @return   string     $srcset    The new array of URLs
 	 */
 	public function header_srcset_filter( $srcset, $size_array, $image_src, $image_meta, $attachment_id = 0 ) {
+//			return $srcset;
 
 		// Bail out if not on header ID
 		if ( $attachment_id != get_custom_header()->attachment_id ) {

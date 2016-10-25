@@ -3,8 +3,8 @@ Contributors: ryanhellyer
 Tags: custom-header, header, headers, images, page, post, plugin, image, images, categories, gallery, media, header-image, header-images, taxonomy, tag, category, posts, pages, taxonomies, post, page, unique, custom
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
-Tested up to: 4.6
-Stable tag: 1.7
+Tested up to: 4.7
+Stable tag: 1.7.1
 
 
 
@@ -91,6 +91,9 @@ Yes. Just send me a message via <a href="https://ryan.hellyer.kiwi/contact/">my 
 
 
 == Changelog ==
+
+= 1.7.1 =
+* Bug fix to make srcset work correctly on regular header images
 
 = 1.7 =
 * Added support for srcset.
