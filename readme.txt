@@ -4,7 +4,7 @@ Tags: custom-header, header, headers, images, page, post, plugin, image, images,
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
 Tested up to: 4.6
-Stable tag: 1.6.1
+Stable tag: 1.7
 
 
 
@@ -20,13 +20,8 @@ This functionality also works with categories and tags.
 = Requirements =
 You must use a theme which utilizes the built-in custom header functionality of WordPress. If your theme implement it's own header functionality, then this plugin will not work with it.
 
-= Language support =
-The plugin includes translations for the following languages:
-
-1. Spanish - provided by <a href="http://westoresolutions.com/">Mariano J. Ponce</a>
-2. German - provided by <a href="http://www.graphicana.de/">Tobias Klotz</a>
-3. French - provided by <a href="http://www.jennybeaumont.com/">Jenny Beaumont</a>
-4. Swedish - provided by <a href="https:r//twitter.com/CyanAlice">Alice Carlsson</a>
+= Paid WordPress development =
+If you would like to pay for assistance, additional features to be added to the plugin or are just looking for general WordPress development services, please contact me via <a href="https://ryan.hellyer.kiwi/contact/">my contact form</a>.
 
 
 == Installation ==
@@ -84,7 +79,7 @@ Mostly, but I only actively support the latest version of WordPress. Support for
 
 = I need custom functionality. Can we pay you to build it for us? =
 
-No, I'm too busy. Having said that, if you are willing to pay me a small fortune then I could <a href="https://ryan.hellyer.kiwi/contact/">probably be persuaded</a>. I'm also open to suggestions for improvements, so feel free to send me ideas and if you are lucky, it may be added for free :)
+Yes. Just send me a message via <a href="https://ryan.hellyer.kiwi/contact/">my contact form</a> with precise information about what you require.
 
 
 
@@ -96,6 +91,10 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 
 
 == Changelog ==
+
+= 1.7 =
+* Added support for srcset.
+* Confirmed support for TwentySixteen theme.
 
 = 1.6.1 =
 * Added checks in file to see if WordPress is loaded.
@@ -163,7 +162,7 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 
 = 1.3.7 =
 * Addition of Spanish translation.
-
+ 
 = 1.3.1 =
 * Adjustment to match post meta key to other plugins, for compatibilty reasons.
 
@@ -195,6 +194,7 @@ No, I'm too busy. Having said that, if you are willing to pay me a small fortune
 = Credits =
 
 Thanks to the following for help with the development of this plugin:<br />
+* <a href="http://www.datamind.co.uk/">crabsallover - Assitance with debugging
 * <a href="http://onmytodd.org">Todd</a> - Assistance with implementing support for tags.
 * <a href="http://westoresolutions.com/">Mariano J. Ponce</a> - Spanish translation.
 * <a href="http://www.graphicana.de/">Tobias Klotz</a> - Deutsch (German) language translation.
