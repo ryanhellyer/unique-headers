@@ -132,7 +132,7 @@ class Unique_Header_Taxonomy_Header_Images {
 		 */
 		if ( is_category() ) {
 			$tax_ID = get_query_var( 'cat' );
-		} elseif( is_tag() || is_tag() ) {
+		} elseif( is_tag() || is_tag() || is_tax() ) {
 
 			// Now we can loop through all taxonomies
 			foreach( $this->taxonomies as $taxonomy ) {

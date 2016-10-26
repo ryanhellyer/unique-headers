@@ -4,7 +4,7 @@ Tags: custom-header, header, headers, images, page, post, plugin, image, images,
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
 Tested up to: 4.7
-Stable tag: 1.7.1
+Stable tag: 1.7.2
 
 
 
@@ -91,6 +91,9 @@ Yes. Just send me a message via <a href="https://ryan.hellyer.kiwi/contact/">my 
 
 
 == Changelog ==
+
+= 1.7.2 =
+* Bug fix for custom taxonomies
 
 = 1.7.1 =
 * Bug fix to make srcset work correctly on regular header images
@@ -197,7 +200,8 @@ Yes. Just send me a message via <a href="https://ryan.hellyer.kiwi/contact/">my 
 = Credits =
 
 Thanks to the following for help with the development of this plugin:<br />
-* <a href="http://www.datamind.co.uk/">crabsallover - Assitance with debugging
+* <a href="http://www.redactsolutions.co.uk">redactuk - Assistance with debugging.
+* <a href="http://www.datamind.co.uk/">crabsallover - Assitance with debugging.
 * <a href="http://onmytodd.org">Todd</a> - Assistance with implementing support for tags.
 * <a href="http://westoresolutions.com/">Mariano J. Ponce</a> - Spanish translation.
 * <a href="http://www.graphicana.de/">Tobias Klotz</a> - Deutsch (German) language translation.
