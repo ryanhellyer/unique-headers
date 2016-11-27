@@ -139,6 +139,7 @@ class Custom_Image_Meta_Box {
 
 		// Grab URL from WordPress
 		$url = wp_get_attachment_image_src( $attachment_id, 'full' );
+
 		$url = $url[0];
 
 		return $url;

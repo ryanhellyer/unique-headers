@@ -42,7 +42,45 @@ class Unique_Headers_Display {
 		add_filter( 'theme_mod_header_image', array( $this, 'header_image_filter' ), 20 );
 		add_filter( 'wp_calculate_image_srcset', array( $this, 'header_srcset_filter' ), 20, 5 );
 
+add_filter( 'header_video_settings', array( $this, 'video_settings' ) );
+add_filter( 'is_header_video_active', array( $this, 'video_active' ) );
+
 	}
+
+function video_settings( $settings ) {
+
+
+
+	// Get current post ID (if on blog, then checks current posts page for it's ID)
+	if ( is_home() ) {
+		$post_id = get_option( 'page_for_posts' );
+	} else {
+		$post_id = get_the_ID();
+	}
+
+	// Get attachment ID
+	$attachment_id = Custom_Image_Meta_Box::get_attachment_id( $post_id, $this->name_underscores );
+
+	// Generate new URL
+	// Determine if image or video
+	$meta = wp_get_attachment_metadata( $attachment_id );
+	if ( 'mp4' == $meta[ 'fileformat' ] ) {
+		$url = wp_get_attachment_url( $attachment_id );
+	}
+
+
+
+	$settings[ 'videoUrl' ] = $url;
+
+//	echo "\n\n\n\n\n";
+//	print_r( $settings );
+//	die;
+	return $settings;
+}
+
+function video_active() {
+	return true;
+}
 
 	/*
 	 * Filter for modifying the output of get_header()
@@ -69,7 +107,11 @@ class Unique_Headers_Display {
 		$attachment_id = Custom_Image_Meta_Box::get_attachment_id( $post_id, $this->name_underscores );
 
 		// Generate new URL
-		if ( is_numeric( $attachment_id ) ) {
+		// Determine if image or video
+		$meta = wp_get_attachment_metadata( $attachment_id );
+		if ( 'mp4' == $meta[ 'fileformat' ] ) {
+//			$url = wp_get_attachment_url( $attachment_id );
+		} elseif ( is_numeric( $attachment_id ) ) {
 			$url = Custom_Image_Meta_Box::get_attachment_src( $attachment_id );
 		}
 
