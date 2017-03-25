@@ -3,8 +3,8 @@ Contributors: ryanhellyer
 Tags: custom-header, header, headers, images, page, post, plugin, image, images, categories, gallery, media, header-image, header-images, taxonomy, tag, category, posts, pages, taxonomies, post, page, unique, custom
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
-Tested up to: 4.7
-Stable tag: 1.7.2
+Tested up to: 4.8
+Stable tag: 1.7.3
 
 
 
@@ -91,6 +91,12 @@ Yes. Just send me a message via <a href="https://ryan.hellyer.kiwi/contact/">my 
 
 
 == Changelog ==
+
+= 1.7.3 =
+* Bug fix for srcset with taxonomies
+* Changed to class autoloader
+* Moved instantiation class to it's own file
+* Added extendible core class
 
 = 1.7.2 =
 * Bug fix for custom taxonomies
