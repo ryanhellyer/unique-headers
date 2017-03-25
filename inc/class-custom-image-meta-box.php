@@ -144,6 +144,27 @@ class Custom_Image_Meta_Box {
 		return $url;
 	}
 
+	/*
+	 * Get the attachment URL from the attachment ID
+	 *
+	 * @since 1.3
+	 * @access   static     This method is static so that front-end scripts can access the attachments SRC
+	 * @param    int        $attachment_id   The attachment ID
+	 * @return   int
+	 */
+	static function get_attachment_dimensions( $attachment_id, $dimension = 'width' ) {
+
+		// Grab URL from WordPress
+		$data = wp_get_attachment_image_src( $attachment_id, 'full' );
+
+		if ( 'width' == $dimension ) {
+			return $data[1];
+		} else if ( 'height' == $dimension ) {
+			return $data[2];
+		}
+
+	}
+
 	/**
 	 * Registers the JavaScript for handling the media uploader.
 	 *

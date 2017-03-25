@@ -8,7 +8,7 @@
  * @author Ryan Hellyer <ryanhellyer@gmail.com>
  * @since 1.3
  */
-class Unique_Headers_Display {
+class Unique_Headers_Display extends Unique_Headers_Core {
 
 	/**
 	 * The name of the image meta
@@ -36,11 +36,13 @@ class Unique_Headers_Display {
 	 * @since 1.3
 	 */
 	public function __construct( $args ) {
+
 		$this->name_underscores    = str_replace( '-', '_', $args['name'] );
 
 		// Add filter for post header image (uses increased priority to ensure that single post thumbnails aren't overridden by category images)
-		add_filter( 'theme_mod_header_image', array( $this, 'header_image_filter' ), 20 );
-		add_filter( 'wp_calculate_image_srcset', array( $this, 'header_srcset_filter' ), 20, 5 );
+		add_filter( 'theme_mod_header_image',      array( $this, 'header_image_filter' ), 20 );
+		add_filter( 'wp_calculate_image_srcset',   array( $this, 'header_srcset_filter' ), 20, 5 );
+		add_filter( 'theme_mod_header_image_data', array( $this, 'modify_header_image_data' ) );	
 
 	}
 
@@ -76,36 +78,46 @@ class Unique_Headers_Display {
 		return $url;
 	}
 
-	/*
-	 * Filter for modifying the srcset values.
-	 * This is required for when the srcset attribute is used within the header.
+	/**
+	 * Modify the header image data.
+	 * Required to make TwentySixteen work.
+	 * This is a replica of the method in Unique_Headers_Taxonomy_Header_Images().
 	 *
-	 * @since 1.7
-	 *
-	 * @param    string     $srcset        The new array of URLs
-	 * @param    array      $size_array    Array of width and height values in pixels (in that order).
-	 * @param    string     $image_src     The 'src' of the image.
-	 * @param    array      $image_meta    The image meta data as returned by 'wp_get_attachment_metadata()'.
-	 * @param    int        $attachment_id Optional. The image attachment ID to pass to the filter. Default 0.
-	 *
-	 * @return   string     $srcset    The new array of URLs
+	 * @param   array   $data   The data
+	 * @return  array   The modified data with new attachment ID
 	 */
-	public function header_srcset_filter( $srcset, $size_array, $image_src, $image_meta, $attachment_id = 0 ) {
-//			return $srcset;
+	public function modify_header_image_data( $data ) {
 
-		// Bail out if not on header ID
-		if ( $attachment_id != get_custom_header()->attachment_id ) {
-			return $srcset;
+		// Bail out now if not in post (is_single or is_page) or blog (is_home)
+		if ( ! is_single() && ! is_page() && ! is_home() ) {
+			return $data;
 		}
 
-		// Changing each URL within the set
-		if ( is_array( $srcset ) ) {
-			foreach( $srcset as $size => $set ) {
-				$srcset[ $size ]['url'] = $this->header_image_filter( $srcset[ $size ]['url'] );
+		// Get current post ID (if on blog, then checks current posts page for it's ID)
+		if ( is_home() ) {
+			$post_id = get_option( 'page_for_posts' );
+		} else {
+			$post_id = get_the_ID();
+		}
+
+		// Get attachment ID
+		$attachment_id = Custom_Image_Meta_Box::get_attachment_id( $post_id, $this->name_underscores );
+
+		// Set new data based on new header image attachment ID
+		if ( is_numeric( $attachment_id ) ) {
+
+			// Create object
+			if ( null == $data ) {
+				$data = (object) null;
 			}
-		}
 
-		return $srcset;
+			$data->attachment_id = $attachment_id;
+			$data->width = Custom_Image_Meta_Box::get_attachment_dimensions( $attachment_id, 'width' );
+			$data->height = Custom_Image_Meta_Box::get_attachment_dimensions( $attachment_id, 'height' );
+
+		}
+	
+		return $data;
 	}
 
 }

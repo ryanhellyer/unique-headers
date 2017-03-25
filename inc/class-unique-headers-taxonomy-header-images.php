@@ -8,7 +8,7 @@
  * @author Ryan Hellyer <ryanhellyer@gmail.com>
  * @since 1.0
  */
-class Unique_Header_Taxonomy_Header_Images {
+class Unique_Headers_Taxonomy_Header_Images extends Unique_Headers_Core {
 
 	/**
 	 * The name of the image meta
@@ -92,8 +92,11 @@ class Unique_Header_Taxonomy_Header_Images {
 		$this->taxonomies          = $args['taxonomies'];
 		$this->upload_header_image = $args['upload_header_image'];
 
-		add_action( 'admin_init',             array( $this, 'add_fields' ) );
-		add_filter( 'theme_mod_header_image', array( $this, 'header_image_filter' ), 5 );
+		add_action( 'admin_init',                  array( $this, 'add_fields' ) );
+		add_filter( 'theme_mod_header_image',      array( $this, 'header_image_filter' ), 5 );
+		add_filter( 'wp_calculate_image_srcset',   array( $this, 'header_srcset_filter' ), 20, 5 );
+		add_filter( 'theme_mod_header_image_data', array( $this, 'modify_header_image_data' ) );	
+
 	}
 
 	/**
@@ -334,6 +337,48 @@ class Unique_Header_Taxonomy_Header_Images {
 		<?php
 
 
+	}
+
+	/**
+	 * Modify the header image data.
+	 * Required to make TwentySixteen work.
+	 * This is a replica of the method in Unique_Headers_Display().
+	 *
+	 * @param   array   $data   The data
+	 * @return  array   The modified data with new attachment ID
+	 */
+	public function modify_header_image_data( $data ) {
+
+		// Bail out now if not in post (is_single or is_page) or blog (is_home)
+		if ( ! is_single() && ! is_page() && ! is_home() ) {
+			return $data;
+		}
+
+		// Get current post ID (if on blog, then checks current posts page for it's ID)
+		if ( is_home() ) {
+			$post_id = get_option( 'page_for_posts' );
+		} else {
+			$post_id = get_the_ID();
+		}
+
+		// Get attachment ID
+		$attachment_id = Custom_Image_Meta_Box::get_attachment_id( $post_id, $this->name_underscores );
+
+		// Set new data based on new header image attachment ID
+		if ( is_numeric( $attachment_id ) ) {
+
+			// Create object
+			if ( null == $data ) {
+				$data = (object) null;
+			}
+
+			$data->attachment_id = $attachment_id;
+			$data->width = Custom_Image_Meta_Box::get_attachment_dimensions( $attachment_id, 'width' );
+			$data->height = Custom_Image_Meta_Box::get_attachment_dimensions( $attachment_id, 'height' );
+
+		}
+	
+		return $data;
 	}
 
 }
