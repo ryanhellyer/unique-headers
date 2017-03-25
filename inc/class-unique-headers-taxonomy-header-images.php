@@ -342,7 +342,7 @@ class Unique_Headers_Taxonomy_Header_Images extends Unique_Headers_Core {
 	/**
 	 * Modify the header image data.
 	 * Required to make TwentySixteen work.
-	 * This is a replica of the method in Unique_Headers_Display().
+	 * This is similar to the method in Unique_Headers_Display().
 	 *
 	 * @param   array   $data   The data
 	 * @return  array   The modified data with new attachment ID
@@ -350,7 +350,7 @@ class Unique_Headers_Taxonomy_Header_Images extends Unique_Headers_Core {
 	public function modify_header_image_data( $data ) {
 
 		// Bail out now if not in post (is_single or is_page) or blog (is_home)
-		if ( ! is_single() && ! is_page() && ! is_home() ) {
+		if ( ! is_taxonomy() ) {
 			return $data;
 		}
 
@@ -377,7 +377,7 @@ class Unique_Headers_Taxonomy_Header_Images extends Unique_Headers_Core {
 			$data->height = Custom_Image_Meta_Box::get_attachment_dimensions( $attachment_id, 'height' );
 
 		}
-	
+
 		return $data;
 	}
 

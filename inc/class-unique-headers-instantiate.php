@@ -72,7 +72,7 @@ class Unique_Headers_Instantiate {
 			// Add upload text
 			$args['upload_header_image'] = __( 'Upload header image', 'unique-headers' );
 
-//			new Unique_Headers_Taxonomy_Header_Images( $args );
+			new Unique_Headers_Taxonomy_Header_Images( $args );
 		}
 
 	}
