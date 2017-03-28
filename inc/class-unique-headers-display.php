@@ -111,7 +111,7 @@ class Unique_Headers_Display extends Unique_Headers_Core {
 				$data = (object) null;
 			}
 
-			if ( is_object() ) {
+			if ( is_object( $data ) ) {
 				$data->attachment_id = $attachment_id;
 				$data->width = Custom_Image_Meta_Box::get_attachment_dimensions( $attachment_id, 'width' );
 				$data->height = Custom_Image_Meta_Box::get_attachment_dimensions( $attachment_id, 'height' );
