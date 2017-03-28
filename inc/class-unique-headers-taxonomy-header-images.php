@@ -135,7 +135,7 @@ class Unique_Headers_Taxonomy_Header_Images extends Unique_Headers_Core {
 		 */
 		if ( is_category() ) {
 			$tax_ID = get_query_var( 'cat' );
-		} elseif( is_tag() || is_tag() || is_tax() ) {
+		} elseif( is_tag() || is_tax() ) {
 
 			// Now we can loop through all taxonomies
 			foreach( $this->taxonomies as $taxonomy ) {
@@ -349,8 +349,8 @@ class Unique_Headers_Taxonomy_Header_Images extends Unique_Headers_Core {
 	 */
 	public function modify_header_image_data( $data ) {
 
-		// Bail out now if not in post (is_single or is_page) or blog (is_home)
-		if ( ! is_taxonomy() ) {
+		// Bail out now if not in taxonomy archive
+		if ( ! is_tag() && ! is_tax() && ! is_category() ) {
 			return $data;
 		}
 

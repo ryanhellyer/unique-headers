@@ -27,7 +27,11 @@ class Unique_Headers_Core {
 	public function header_srcset_filter( $srcset, $size_array, $image_src, $image_meta, $attachment_id = 0 ) {
 
 		// Bail out if not on header ID
-		if ( $attachment_id != get_custom_header()->attachment_id ) {
+		if (
+			! isset( get_custom_header()->attachment_id )
+			||
+			$attachment_id != get_custom_header()->attachment_id
+		) {
 			return $srcset;
 		}
 

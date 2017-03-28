@@ -4,7 +4,7 @@ Tags: custom-header, header, headers, images, page, post, plugin, image, images,
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
 Tested up to: 4.8
-Stable tag: 1.7.3
+Stable tag: 1.7.9
 
 
 
@@ -91,6 +91,24 @@ Yes. Just send me a message via <a href="https://ryan.hellyer.kiwi/contact/">my 
 
 
 == Changelog ==
+
+= 1.7.9 =
+* Checking for presence of object before setting width and height
+
+= 1.7.8 =
+* Fixing filter bug
+
+= 1.7.7 =
+* Fixing filter bug
+
+= 1.7.6 =
+* Fixing bug in taxonomy setup
+
+= 1.7.5 =
+* Fixing bug in taxonomy setup
+
+= 1.7.4 =
+* Fixing bug in taxonomy setup
 
 = 1.7.3 =
 * Bug fix for srcset with taxonomies
