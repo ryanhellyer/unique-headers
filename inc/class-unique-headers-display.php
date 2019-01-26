@@ -8,7 +8,7 @@
  * @author Ryan Hellyer <ryanhellyer@gmail.com>
  * @since 1.3
  */
-class Unique_Headers_Display extends Unique_Headers_Core {
+class Unique_Headers_Display {
 
 	/**
 	 * The name of the image meta
@@ -41,7 +41,6 @@ class Unique_Headers_Display extends Unique_Headers_Core {
 
 		// Add filter for post header image (uses increased priority to ensure that single post thumbnails aren't overridden by category images)
 		add_filter( 'theme_mod_header_image',      array( $this, 'header_image_filter' ), 20 );
-		add_filter( 'wp_calculate_image_srcset',   array( $this, 'header_srcset_filter' ), 20, 5 );
 		add_filter( 'theme_mod_header_image_data', array( $this, 'modify_header_image_data' ) );	
 
 	}

@@ -8,7 +8,7 @@
  * @author Ryan Hellyer <ryanhellyer@gmail.com>
  * @since 1.0
  */
-class Unique_Headers_Taxonomy_Header_Images extends Unique_Headers_Core {
+class Unique_Headers_Taxonomy_Header_Images {
 
 	/**
 	 * The name of the image meta
@@ -94,7 +94,6 @@ class Unique_Headers_Taxonomy_Header_Images extends Unique_Headers_Core {
 
 		add_action( 'admin_init',                  array( $this, 'add_fields' ) );
 		add_filter( 'theme_mod_header_image',      array( $this, 'header_image_filter' ), 5 );
-		add_filter( 'wp_calculate_image_srcset',   array( $this, 'header_srcset_filter' ), 20, 5 );
 		add_filter( 'theme_mod_header_image_data', array( $this, 'modify_header_image_data' ) );	
 
 	}
@@ -354,27 +353,33 @@ class Unique_Headers_Taxonomy_Header_Images extends Unique_Headers_Core {
 			return $data;
 		}
 
-		// Get current post ID (if on blog, then checks current posts page for it's ID)
-		if ( is_home() ) {
-			$post_id = get_option( 'page_for_posts' );
-		} else {
-			$post_id = get_the_ID();
-		}
+		// Get current term ID
+		$term_id = get_queried_object()->term_id;
 
 		// Get attachment ID
-		$attachment_id = Custom_Image_Meta_Box::get_attachment_id( $post_id, $this->name_underscores );
+
+		$attachment_id = get_term_meta( $term_id, '_' . $this->name_underscores . '_id', true );
+
+		// Check for fallback images
+		if ( ! $attachment_id ) {
+			$attachment_id = apply_filters( 'unique_header_fallback_images', $term_id );
+		}
+
+
 
 		// Set new data based on new header image attachment ID
 		if ( is_numeric( $attachment_id ) ) {
 
 			// Create object
-			if ( null == $data ) {
+			if ( null == $data || empty( $data ) ) {
 				$data = (object) null;
 			}
 
-			$data->attachment_id = $attachment_id;
-			$data->width = Custom_Image_Meta_Box::get_attachment_dimensions( $attachment_id, 'width' );
-			$data->height = Custom_Image_Meta_Box::get_attachment_dimensions( $attachment_id, 'height' );
+			if ( is_object ( $data ) ) {
+				$data->attachment_id = $attachment_id;
+				$data->width = Custom_Image_Meta_Box::get_attachment_dimensions( $attachment_id, 'width' );
+				$data->height = Custom_Image_Meta_Box::get_attachment_dimensions( $attachment_id, 'height' );
+			}
 
 		}
 
