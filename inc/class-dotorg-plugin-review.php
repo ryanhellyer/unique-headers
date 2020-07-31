@@ -7,7 +7,7 @@
  * Heavily based on code by Rhys Wynne
  * https://winwar.co.uk/2014/10/ask-wordpress-plugin-reviews-week/
  *
- * @version   1.0
+ * @version 1.0
  * @copyright Copyright (c), Ryan Hellyer
  * @author Ryan Hellyer <ryanhellyer@gmail.com>
  */
@@ -19,9 +19,9 @@ class DotOrg_Plugin_Review {
 	 *
 	 * These should be customised for each project.
 	 */
-	private $slug;        // The plugin slug
-	private $name;        // The plugin name
-	private $time_limit;  // The time limit at which notice is shown
+	private $slug; // The plugin slug
+	private $name;  // The plugin name
+	private $time_limit; // The time limit at which notice is shown
 
 	/**
 	 * Variables.
@@ -33,8 +33,8 @@ class DotOrg_Plugin_Review {
 	 */
 	public function __construct( $args ) {
 
-		$this->slug        = $args['slug'];
-		$this->name        = $args['name'];
+		$this->slug = $args['slug'];
+		$this->name = $args['name'];
 		if ( isset( $args['time_limit'] ) ) {
 			$this->time_limit  = $args['time_limit'];
 		} else {
@@ -43,7 +43,7 @@ class DotOrg_Plugin_Review {
 
 		$this->nobug_option = $this->slug . '-no-bug';
 
-		// Loading main functionality
+		// Loading main functionality.
 		add_action( 'admin_init', array( $this, 'check_installation_date' ) );
 		add_action( 'admin_init', array( $this, 'set_no_bug' ), 5 );
 	}
@@ -53,7 +53,7 @@ class DotOrg_Plugin_Review {
 	 */
 	public function seconds_to_words( $seconds ) {
 
-		// Get the years
+		// Get the years.
 		$years = ( intval( $seconds ) / YEAR_IN_SECONDS ) % 100;
 		if ( $years > 1 ) {
 			return sprintf( __( '%s years', $this->slug ), $years );
@@ -61,7 +61,7 @@ class DotOrg_Plugin_Review {
 			return __( 'a year', $this->slug );
 		}
 
-		// Get the weeks
+		// Get the weeks.
 		$weeks = ( intval( $seconds ) / WEEK_IN_SECONDS ) % 52;
 		if ( $weeks > 1 ) {
 			return sprintf( __( '%s weeks', $this->slug ), $weeks );
@@ -69,7 +69,7 @@ class DotOrg_Plugin_Review {
 			return __( 'a week', $this->slug );
 		}
 
-		// Get the days
+		// Get the days.
 		$days = ( intval( $seconds ) / DAY_IN_SECONDS ) % 7;
 		if ( $days > 1 ) {
 			return sprintf( __( '%s days', $this->slug ), $days );
@@ -77,7 +77,7 @@ class DotOrg_Plugin_Review {
 			return __( 'a day', $this->slug );
 		}
 
-		// Get the hours
+		// Get the hours.
 		$hours = ( intval( $seconds ) / HOUR_IN_SECONDS ) % 24;
 		if ( $hours > 1 ) {
 			return sprintf( __( '%s hours', $this->slug ), $hours );
@@ -85,7 +85,7 @@ class DotOrg_Plugin_Review {
 			return __( 'an hour', $this->slug );
 		}
 
-		// Get the minutes
+		// Get the minutes.
 		$minutes = ( intval( $seconds ) / MINUTE_IN_SECONDS ) % 60;
 		if ( $minutes > 1 ) {
 			return sprintf( __( '%s minutes', $this->slug ), $minutes );
@@ -93,7 +93,7 @@ class DotOrg_Plugin_Review {
 			return __( 'a minute', $this->slug );
 		}
 
-		// Get the seconds
+		// Get the seconds.
 		$seconds = intval( $seconds ) % 60;
 		if ( $seconds > 1 ) {
 			return sprintf( __( '%s seconds', $this->slug ), $seconds );
@@ -111,13 +111,13 @@ class DotOrg_Plugin_Review {
 
 		if ( true != get_site_option( $this->nobug_option ) ) {
 
-			// If not installation date set, then add it
+			// If not installation date set, then add it.
 			$install_date = get_site_option( $this->slug . '-activation-date' );
 			if ( '' == $install_date ) {
 				add_site_option( $this->slug . '-activation-date', time() );
 			}
 
-			// If difference between install date and now is greater than time limit, then display notice
+			// If difference between install date and now is greater than time limit, then display notice.
 			if ( ( time() - $install_date ) >  $this->time_limit  ) {
 				add_action( 'admin_notices', array( $this, 'display_admin_notice' ) );
 			}
@@ -156,7 +156,7 @@ class DotOrg_Plugin_Review {
 	 */
 	public function set_no_bug() {
 
-		// Bail out if not on correct page
+		// Bail out if not on correct page.
 		if (
 			! isset( $_GET['_wpnonce'] )
 			||
