@@ -11,81 +11,81 @@
 class Custom_Image_Meta_Box {
 
 	/**
-	 * The name of the image meta.
+	 * The name of the image meta
 	 *
 	 * @since 1.3
-	 * @access private
-	 * @var string $name
+	 * @access   private
+	 * @var      string    $name
 	 */
 	private $name;
 
 	/**
-	 * The name of the image meta, with forced underscores instead of dashes.
+	 * The name of the image meta, with forced underscores instead of dashes
 	 * This is to ensure that meta keys and filters do not use dashes.
 	 *
 	 * @since 1.3
-	 * @access private
-	 * @var string $name_underscores
+	 * @access   private
+	 * @var      string    $name_underscores
 	 */
 	private $name_underscores;
 
 	/**
-	 * The directory URI, for accessing JS and CSS files.
+	 * The directory URI, for accessing JS and CSS files
 	 *
 	 * @since 1.3
-	 * @access private
-	 * @var string $dir_uri
+	 * @access   private
+	 * @var      string    $dir_uri
 	 */
 	private $dir_uri;
 
 	/**
-	 * The title of the meta box.
+	 * The title of the meta box
 	 *
 	 * @since 1.3
-	 * @access private
-	 * @var string $title
+	 * @access   private
+	 * @var      string    $title
 	 */
 	private $title;
 
 	/**
-	 * The set custom image text.
+	 * The set custom image text
 	 *
 	 * @since 1.3
-	 * @access private
-	 * @var string $set_custom_image
+	 * @access   private
+	 * @var      string    $set_custom_image
 	 */
 	private $set_custom_image;
 
 	/**
-	 * The remove custom image text.
+	 * The remove custom image text
 	 *
 	 * @since 1.3
-	 * @access private
-	 * @var string $remove_custom_image
+	 * @access   private
+	 * @var      string    $remove_custom_image
 	 */
 	private $remove_custom_image;
 
 	/**
-	 * The current version of the class.
+	 * The current version of the class
 	 *
 	 * @since 1.3
-	 * @access private
-	 * @var string $version
+	 * @access   private
+	 * @var      string    $version
 	 */
 	private $version = '1.3';
 
 	/**
-	 * The post types to add meta boxes to.
+	 * The post types to add meta boxes to
 	 *
 	 * @since 1.3
-	 * @access private
-	 * @var string $post_types
+	 * @access   private
+	 * @var      string    $post_types
 	 */
 	private $post_types;
 
 	/**
-	 * Class constructor.
-	 * Adds methods to appropriate hooks.
+	 * Class constructor
+	 * Adds methods to appropriate hooks
 	 * 
 	 * @since 1.3
 	 */
@@ -102,24 +102,24 @@ class Custom_Image_Meta_Box {
 		// Add meta box
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
-		add_action( 'save_post', array( $this, 'save_post' ) );
+		add_action( 'add_meta_boxes',        array( $this, 'add_meta_box' ) );
+		add_action( 'save_post',             array( $this, 'save_post' ) );
 
 	}
 
 	/*
-	 * Get the attachment ID from the post ID.
+	 * Get the attachment ID from the post ID
 	 *
 	 * @since 1.3
-	 * @access static This method is static so that front-end scripts can access the attachment ID
-	 * @param int $post_id The post ID
-	 * @return int $attachment_id The attachment ID
+	 * @access   static     This method is static so that front-end scripts can access the attachment ID
+	 * @param    int        $post_id         The post ID
+	 * @return   int        $attachment_id   The attachment ID
 	 */
 	static function get_attachment_id( $post_id, $name ) {
 
 		$attachment_id = get_post_meta( $post_id, '_' . $name . '_id', true );
 
-		// Check for fallback images.
+		// Check for fallback images
 		if ( ! $attachment_id ) {
 			$attachment_id = apply_filters( 'unique_header_fallback_images', $post_id );
 		}
@@ -128,35 +128,33 @@ class Custom_Image_Meta_Box {
 	}
 
 	/*
-	 * Get the attachment URL from the attachment ID.
+	 * Get the attachment URL from the attachment ID
 	 *
 	 * @since 1.3
-	 * @access static This method is static so that front-end scripts can access the attachments SRC
-	 * @param int $attachment_id The attachment ID
-	 * @return string
+	 * @access   static     This method is static so that front-end scripts can access the attachments SRC
+	 * @param    int        $attachment_id   The attachment ID
+	 * @return   string
 	 */
 	static function get_attachment_src( $attachment_id ) {
 
-		// Grab URL from WordPress.
+		// Grab URL from WordPress
 		$url = wp_get_attachment_image_src( $attachment_id, 'full' );
-		if ( isset( $url[0] ) ) {
-			$url = $url[0];
-		}
+		$url = $url[0];
 
 		return $url;
 	}
 
 	/*
-	 * Get the attachment URL from the attachment ID.
+	 * Get the attachment URL from the attachment ID
 	 *
 	 * @since 1.3
-	 * @access static This method is static so that front-end scripts can access the attachments SRC
-	 * @param int $attachment_id The attachment ID
-	 * @return int
+	 * @access   static     This method is static so that front-end scripts can access the attachments SRC
+	 * @param    int        $attachment_id   The attachment ID
+	 * @return   int
 	 */
 	static function get_attachment_dimensions( $attachment_id, $dimension = 'width' ) {
 
-		// Grab URL from WordPress.
+		// Grab URL from WordPress
 		$data = wp_get_attachment_image_src( $attachment_id, 'full' );
 
 		if ( 'width' == $dimension ) {
@@ -171,13 +169,13 @@ class Custom_Image_Meta_Box {
 	 * Registers the JavaScript for handling the media uploader.
 	 *
 	 * @since 1.3
-	 * @access static This method is static so that front-end scripts can access the attachments title
-	 * @param int $attachment_id The attachment ID
-	 * @return string $title The attachment title
+	 * @access   static   This method is static so that front-end scripts can access the attachments title
+	 * @param    int      $attachment_id   The attachment ID
+	 * @return   string   $title           The attachment title
 	 */
 	static function get_attachment_title( $attachment_id ) {
 
-		// Get title (trip and strip_tags method was adapted from WordPress core).
+		// Get title (trip and strip_tags method was adapted from WordPress core)
 		$title = trim( strip_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) ) );
 
 		return $title;
@@ -221,12 +219,12 @@ class Custom_Image_Meta_Box {
 			'all'
 		);
 
-		wp_localize_script( $this->name, 'custom_meta_image_name', $this->name );
+		wp_localize_script( $this->name, 'custom_meta_image_name', array( $this->name ) );
 
 	}
 
 	/**
-	 * Registers the stylesheets for handling the meta box.
+	 * Registers the stylesheets for handling the meta box
 	 *
 	 * @since 1.3
 	 */
@@ -243,29 +241,29 @@ class Custom_Image_Meta_Box {
 	/**
 	 * Sanitized and saves the post featured footer image meta data specific with this post.
 	 *
-	 * @since 1.3
-	 * @param int $post_id The ID of the post with which we're currently working.
-	 * @return int $post_id The ID of the post with which we're currently working.
+	 * @since    1.3
+	 * @param    int    $post_id    The ID of the post with which we're currently working.
+	 * @return   int    $post_id    The ID of the post with which we're currently working.
 	 */
 	public function save_post( $post_id ) {
 
-		// Bail out now if POST vars not set.
+		// Bail out now if POST vars not set
 		if ( ! isset( $_POST[$this->name . '-nonce'] ) || ! isset( $_POST[$this->name . '-id'] ) ) {
 			return $post_id;
 		}
 
-		// Bail out now if nonce doesn't verify.
+		// Bail out now if nonce doesn't verify
 		if ( ! wp_verify_nonce( $_POST[$this->name . '-nonce'], $this->name ) ) {
 			return $post_id;
 		}
 
-		// Sanitize the attachment ID.
+		// Sanitize the attachment ID
 		$attachment_id = sanitize_text_field( $_POST[$this->name . '-id'] );
 
-		// Save the attachment ID in the database.
+		// Save the attachment ID in the database
 		update_post_meta( $post_id, '_' . $this->name_underscores . '_id', $attachment_id );
 
-		// Return the post ID.
+		// Return the post ID
 		return $post_id;
 	}
 
@@ -273,15 +271,15 @@ class Custom_Image_Meta_Box {
 	 * Renders the view that displays the contents for the meta box that for triggering
 	 * the meta box.
 	 *
-	 * @param WP_Post $post The post object
-	 * @since 1.3
+	 * @param    WP_Post    $post    The post object
+	 * @since    1.3
 	 */
 	public function display_custom_meta_image( $post ) {
 
-		// Get required values.
+		// Get required values
 		$attachment_id = $this->get_attachment_id( $post->ID, $this->name_underscores );
-		$url           = $this->get_attachment_src( $attachment_id );
-		$title         = $this->get_attachment_title( $attachment_id );
+		$url = $this->get_attachment_src( $attachment_id );
+		$title = $this->get_attachment_title( $attachment_id );
 
 		wp_nonce_field( $this->name, $this->name . '-nonce' );
 		?>
