@@ -1,0 +1,20 @@
+{
+    "name": "ryanhellyer/unique-headers",
+    "description": "WordPress plugin which adds the ability to use unique custom header images on individual pages, posts or categories or tags.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "ryanhellyer"
+        }
+    ],
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5",
+        "wp-coding-standards/wpcs": "^3.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}
