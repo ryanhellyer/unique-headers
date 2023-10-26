@@ -148,7 +148,7 @@ class DotOrg_Plugin_Review {
 	 */
 	public function check_installation_date() {
 
-		if ( true !== get_site_option( $this->nobug_option ) ) {
+		if ( '1' !== get_site_option( $this->nobug_option ) ) {
 
 			// If not installation date set, then add it.
 			$install_date = get_site_option( $this->slug . '-activation-date' );
