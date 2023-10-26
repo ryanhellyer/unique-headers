@@ -218,7 +218,7 @@ class Unique_Headers_Taxonomy_Header_Images extends Unique_Headers_Core {
 
 		// Bail out now if nonce doesn't verify.
 		$nonce = sanitize_key( wp_unslash( $_POST[ $this->name . '-nonce' ] ) );
-		if ( ! wp_verify_nonce( $nonce ) ) {
+		if ( ! wp_verify_nonce( $nonce, $this->name ) ) {
 			return;
 		}
 
@@ -348,7 +348,16 @@ class Unique_Headers_Taxonomy_Header_Images extends Unique_Headers_Core {
 							<input type="hidden" id="<?php echo esc_attr( $this->name . '-id' ); ?>" class="custom-meta-image-id" name="<?php echo esc_attr( $this->name . '-id' ); ?>" value="<?php echo esc_attr( $attachment_id ); ?>" />
 						</p><!-- #<?php echo esc_attr( $this->name . '-image-info' ); ?> -->
 
-						<?php wp_nonce_field( $this->name, $this->name . '-nonce' ); ?>
+						<?php 
+
+//echo "\n\n...............\n\n";
+//echo ;
+//echo "\n\n...............\n\n";
+						wp_nonce_field( $this->name, $this->name . '-nonce' );
+//echo "\n\n...............\n\n";
+
+
+?>
 
 					</div>
 				</div>
