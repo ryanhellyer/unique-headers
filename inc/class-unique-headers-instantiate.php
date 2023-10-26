@@ -39,6 +39,7 @@ class Unique_Headers_Instantiate {
 		// Loading dotorg plugin review code.
 		if ( is_admin() ) {
 			require 'class-dotorg-plugin-review.php';
+			/*
 			new DotOrg_Plugin_Review(
 				array(
 					'slug'       => 'unique-headers', // The plugin slug.
@@ -46,6 +47,7 @@ class Unique_Headers_Instantiate {
 					'time_limit' => WEEK_IN_SECONDS,  // The time limit at which notice is shown.
 				)
 			);
+			*/
 		}
 
 		// Add hooks.
