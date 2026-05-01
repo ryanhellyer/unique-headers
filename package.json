@@ -1,0 +1,12 @@
+{
+    "name": "unique-headers",
+    "private": true,
+    "scripts": {
+        "typecheck": "tsc",
+        "build": "esbuild src/ts/admin.ts --outfile=assets/admin.js --minify --target=es6"
+    },
+    "devDependencies": {
+        "typescript": "^5.0.0",
+        "esbuild": "^0.25.0"
+    }
+}

@@ -37,6 +37,18 @@ Now you will see a new custom header image uploader whilst editing posts, pages,
 Visit the <a href="https://geek.hellyer.kiwi/products/unique-headers/">Unique Headers Plugin</a> for more information.
 
 
+== Development ==
+
+The admin JavaScript is written in TypeScript. To compile changes:
+
+1. Install dependencies: <code>npm install</code>
+2. Compile TypeScript: <code>npm run build</code>
+
+The compiled output is written to <code>assets/admin.js</code> and is what WordPress loads on the admin side.
+
+Source files are in <code>src/ts/</code>.
+
+
 == Frequently Asked Questions ==
 
 = I upgraded to WordPress 4.4 and the taxonomy meta plugin broke. What should I do? =

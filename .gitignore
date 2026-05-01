@@ -1,5 +1,6 @@
 vendor/
 composer.lock
+package-lock.json
 .DS_Store
 Thumbs.db
 *.log
@@ -8,3 +9,4 @@ Thumbs.db
 .phpcs-cache
 node_modules/
 build/
+assets/admin.js
