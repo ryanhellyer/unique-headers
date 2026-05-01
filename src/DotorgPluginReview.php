@@ -102,6 +102,7 @@ class DotorgPluginReview
             'review-nonce'
         );
         $time = $this->secondsToWords(time() - (int) get_site_option($this->slug . '-activation-date'));
+        $reviewUrl = 'https://wordpress.org/support/view/plugin-reviews/' . $this->slug . '#postform';
 
         ?>
         <div class="updated">
@@ -109,7 +110,7 @@ class DotorgPluginReview
                 <?php
                 echo sprintf(
                     esc_html__(
-                        'You have been using the %1$s plugin for %2$s now, do you like it? If so, please leave us a review with your feedback!',
+                        'You have been using the %1$s plugin for %2$s now, do you like it? If so, please leave us a review with your feedback!', // phpcs:ignore Generic.Files.LineLength
                         'unique-headers'
                     ),
                     esc_html($this->name),
@@ -117,8 +118,15 @@ class DotorgPluginReview
                 );
                 ?>
                 <br /><br />
-                <a onclick="location.href='<?php echo esc_url($noBugUrl); ?>';" class="button button-primary" href="<?php echo esc_url('https://wordpress.org/support/view/plugin-reviews/' . $this->slug . '#postform'); ?>" target="_blank"><?php echo esc_html__('Leave A Review', 'unique-headers'); ?></a>
-                <a href="<?php echo esc_url($noBugUrl); ?>"><?php echo esc_html__('No thanks.', 'unique-headers'); ?></a>
+                <a onclick="location.href='<?php echo esc_url($noBugUrl); ?>';"
+                   class="button button-primary"
+                   href="<?php echo esc_url($reviewUrl); ?>"
+                   target="_blank">
+                    <?php echo esc_html__('Leave A Review', 'unique-headers'); ?>
+                </a>
+                <a href="<?php echo esc_url($noBugUrl); ?>">
+                    <?php echo esc_html__('No thanks.', 'unique-headers'); ?>
+                </a>
             </p>
         </div>
         <?php
