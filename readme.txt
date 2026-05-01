@@ -41,9 +41,6 @@ Visit the <a href="https://geek.hellyer.kiwi/products/unique-headers/">Unique He
 
 == Frequently Asked Questions ==
 
-= I upgraded to WordPress 4.4 and the taxonomy meta plugin broke. What should I do? =
-Older versions of WordPress required the taxonomy meta data plugin to add support for categories and tags. However, that functionality was rolled into the core of WordPress 4.4 and the old plugin stopped working with no upgrade path. You can simply delete the plugin, and your site will behave as normal, but the old header images for categories and tags will be missing. To work around this problem, please <a href="https://wordpress.org/support/topic/wordpress-44-fatal-error?replies=9#post-7762404">follow the instructions in this helpful support thread</a> for that plugin. Please note that I am not connected with the taxonomy meta data plugin and can not provide any assistance with it.
-
 = I set a category header image, but why are my individual posts not showing that header image? =
 Setting a category (or other taxonomy) header image, only causes that header image to show on the category page itself. It does not make the header image show on the single posts of that category.
 
@@ -61,7 +58,7 @@ Yes, as of version 1.5, support for publicly viewable custom post-types was adde
 
 = Does it work with taxonomies? =
 
-Yes, as of version 1.5 of the Unique Headers plugin and version 4.4 of WordPress, support for all publicly viewable custom taxonomies was added by default.
+Yes, as of version 1.5 of the Unique Headers plugin, support for all publicly viewable custom taxonomies was added by default.
 
 
 = Where's the plugin settings page? =
@@ -76,7 +73,7 @@ I prefer to allow you to set the width and height yourself by opening a correct 
 
 = Does it work in older versions of WordPress? =
 
-Mostly, but I only actively support the latest version of WordPress. Support for older versions is purely by accident. Versions prior to 4.4 will definitely not work with categories and tags.
+Mostly, but I only actively support the latest version of WordPress. Support for older versions is purely by accident.
 
 
 = I need custom functionality. Can we pay you to build it for us? =
