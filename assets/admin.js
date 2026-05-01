@@ -31,10 +31,22 @@ class UniqueHeaders {
             return;
         }
 
+        // Some plugins (e.g. Shortcode UI) crash if wpActiveEditor is
+        // undefined when a media frame is created. Set a dummy to keep
+        // them happy, then restore the original state immediately.
+        const activeEditor = window.wpActiveEditor;
+        if (activeEditor === undefined) {
+            window.wpActiveEditor = 'unique-headers-media';
+        }
+
         this.fileFrame = wp.media.frames.fileFrame = wp.media({
             frame: 'select',
             multiple: false,
         });
+
+        if (activeEditor === undefined) {
+            delete window.wpActiveEditor;
+        }
 
         this.fileFrame.on('select', () => {
             const json = this.fileFrame.state().get('selection').first().toJSON();
