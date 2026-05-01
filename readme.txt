@@ -4,7 +4,7 @@ Tags: custom-header, header, headers, images, page, post, plugin, image, images,
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
 Tested up to: 7.0
-Stable tag: 1.9.4
+Stable tag: 2.0
 
 
 
@@ -35,18 +35,6 @@ After you've downloaded and extracted the files:
 Now you will see a new custom header image uploader whilst editing posts, pages, tags or categories on your site.
 
 Visit the <a href="https://geek.hellyer.kiwi/products/unique-headers/">Unique Headers Plugin</a> for more information.
-
-
-== Development ==
-
-The admin JavaScript is written in TypeScript. To compile changes:
-
-1. Install dependencies: <code>npm install</code>
-2. Compile TypeScript: <code>npm run build</code>
-
-The compiled output is written to <code>assets/admin.js</code> and is what WordPress loads on the admin side.
-
-Source files are in <code>src/ts/</code>.
 
 
 == Frequently Asked Questions ==
@@ -103,6 +91,9 @@ Yes. Just send me a message via <a href="https://ryan.hellyer.kiwi/contact/">my 
 
 
 == Changelog ==
+
+= 2.0 =
+* Major refactor to use modern PHP
 
 = 1.9.4 =
 * Version number bump
@@ -268,6 +259,31 @@ Yes. Just send me a message via <a href="https://ryan.hellyer.kiwi/contact/">my 
 
 = 1.0 =
 * Initial release.
+
+
+== Development ==
+
+This section is only relevant for developers building the plugin from source (e.g. cloning from GitHub). If you installed via WordPress.org, the plugin is ready to use — no build steps required.
+
+The plugin uses Composer for PHP autoloading and dependencies, npm for JavaScript tooling, and TypeScript for admin JavaScript.
+
+To set up a development environment:
+
+1. Install PHP dependencies: <code>composer install</code>
+2. Install JavaScript dependencies: <code>npm install</code>
+3. Compile TypeScript to JavaScript: <code>npm run build</code>
+
+To run tests and analysis:
+
+- PHPCS (PSR-12 coding standards): <code>composer phpcs</code>
+- Auto-fix PHPCS violations: <code>composer phpcbf</code>
+- PHP-CS-Fixer (dry-run): <code>composer cs</code>
+- PHP-CS-Fixer (auto-fix): <code>composer cs:fix</code>
+- PHPStan static analysis: <code>composer phpstan</code>
+- PHPUnit unit tests: <code>composer test</code>
+- TypeScript type checking: <code>npm run typecheck</code>
+
+TypeScript source files are in <code>src/ts/</code>. The compiled output is written to <code>assets/admin.js</code> and is what WordPress loads on the admin side.
 
 
 = Credits =
