@@ -200,6 +200,23 @@ If you would like to pay for assistance, additional features to be added to the 
 
 ## Changelog
 
+### 2.0 - 2026-05-01
+
+* Major architectural overhaul: migrated to PSR-4 autoloading with Composer and Inpsyde Modularity
+* Replaced legacy classes with AdminModule, DisplayModule, and AttachmentHelper service
+* Rewrote admin JavaScript as ES6 class without jQuery
+* Migrated admin JavaScript to TypeScript with esbuild build pipeline
+* Added shared view partial for image meta box
+* Added PHP_CodeSniffer (PSR-12), PHPStan (level 6), PHP-CS-Fixer, and PHPUnit tooling
+* Added unit tests with WordPress function stubs
+* Added GitHub Actions CI workflow (PHP 8.2-8.5)
+* Security: added capability checks to savePost and storeTaxonomyData
+* Security: changed attachment ID sanitization from sanitize_text_field to absint
+* Performance: scoped admin asset enqueues to post and term edit screens only
+* Performance: consolidated taxonomy attachment lookup into shared helper
+* Bug fix: prevented Shortcode UI plugin crash by setting wpActiveEditor dummy
+* Bug fix: corrected broken URL check in admin.js media uploader
+
 ### 1.9.4 - 2026-04-29
 
 * Version number bump

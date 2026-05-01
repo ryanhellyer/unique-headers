@@ -32,7 +32,11 @@ $inCode = false;
 foreach ($lines as $line) {
     $trimmed = ltrim($line);
 
-    if (preg_match('/^(?:    |\t)(.+)$/', $line, $m) && !in_array(trim($line), ['', '-']) && !preg_match('/^\s*[\*\-\d]\.?\s/', $trimmed)) {
+    if (
+        preg_match('/^(?:    |\t)(.+)$/', $line, $m)
+        && !in_array(trim($line), ['', '-'])
+        && !preg_match('/^\s*[\*\-\d]\.?\s/', $trimmed)
+    ) {
         if (!$inCode) {
             $result[] = '```';
             $inCode = true;
@@ -70,7 +74,12 @@ $markdown = preg_replace("/\n{3,}/", "\n\n", $markdown);
 // Build the final README.md with GitHub-specific sections
 $header = '# Unique Headers
 
-[![PHP](https://img.shields.io/badge/PHP-%E2%89%A57.4-777BB4?logo=php&logoColor=white)](https://php.net) [![WordPress](https://img.shields.io/badge/WordPress-%E2%89%A54.3-21759B?logo=wordpress&logoColor=white)](https://wordpress.org) [![PHPStan](https://img.shields.io/badge/PHPStan-level%206-brightgreen)](https://phpstan.org) [![PSR-12](https://img.shields.io/badge/coding%20standard-PSR--12-ff69b4)](https://www.php-fig.org/psr/psr-12/) [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-blue)](LICENSE)
+[![PHP](https://img.shields.io/badge/PHP-%E2%89%A57.4-777BB4?logo=php&logoColor=white)](https://php.net)'
+    . ' [![WordPress](https://img.shields.io/badge/WordPress-%E2%89%A54.3-21759B?logo=wordpress&logoColor=white)'
+    . '(https://wordpress.org)'
+    . ' [![PHPStan](https://img.shields.io/badge/PHPStan-level%206-brightgreen)](https://phpstan.org)'
+    . ' [![PSR-12](https://img.shields.io/badge/coding%20standard-PSR--12-ff69b4)](https://www.php-fig.org/psr/psr-12/)'
+    . ' [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-blue)](LICENSE)
 
 ';
 
@@ -79,7 +88,8 @@ $architecture = '## Architecture
 The plugin uses:
 
 - **PSR-4 autoloading** - classes in `src/` are autoloaded via Composer under the `RyanHellyer\UniqueHeaders` namespace.
-- **Inpsyde Modularity** - the plugin is structured as two modules implementing `ExecutableModule`, bootstrapped via the library\'s `Package` class.
+- **Inpsyde Modularity** - the plugin is structured as two modules implementing `ExecutableModule`,'
+    . ' bootstrapped via the library\'s `Package` class.
 - **TypeScript** - admin JavaScript is written in TypeScript and compiled to ES5 with esbuild.
 
 ```

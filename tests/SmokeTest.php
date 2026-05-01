@@ -33,5 +33,4 @@ class SmokeTest extends TestCase
 
         $this->assertSame('unique-headers-display', $module->id());
     }
-
 }
