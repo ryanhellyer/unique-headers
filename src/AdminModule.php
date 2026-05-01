@@ -1,0 +1,239 @@
+<?php
+
+declare(strict_types=1);
+
+namespace RyanHellyer\UniqueHeaders;
+
+use Inpsyde\Modularity\Module\ExecutableModule;
+use Psr\Container\ContainerInterface;
+
+class AdminModule implements ExecutableModule
+{
+    private string $name = 'custom-header-image';
+    private string $nameUnderscores;
+    private string $dirUri;
+    private string $version = '1.3';
+
+    public function __construct()
+    {
+        $this->nameUnderscores = str_replace('-', '_', $this->name);
+        $this->dirUri = plugin_dir_url(dirname(__DIR__) . '/index.php') . 'assets';
+    }
+
+    public function id(): string
+    {
+        return 'unique-headers-admin';
+    }
+
+    public function run(ContainerInterface $container): bool
+    {
+        add_action('init', [$this, 'loadTextdomain']);
+        add_action('init', [$this, 'wpdbFix']);
+
+        add_filter('unique_header_fallback_images', [$this, 'fallbackImages']);
+
+        if (is_admin()) {
+            new DotorgPluginReview(
+                [
+                    'slug' => 'unique-headers',
+                    'name' => 'Unique Headers',
+                    'time_limit' => WEEK_IN_SECONDS,
+                ]
+            );
+        }
+
+        add_action('add_meta_boxes', [$this, 'addMetaBox']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueueScripts']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueueStyles']);
+        add_action('save_post', [$this, 'savePost']);
+
+        return true;
+    }
+
+    public static function getAttachmentId(int $postId, string $name): int
+    {
+        $attachmentId = (int) get_post_meta($postId, '_' . $name . '_id', true);
+
+        if (!$attachmentId) {
+            $attachmentId = (int) apply_filters('unique_header_fallback_images', $postId);
+        }
+
+        return $attachmentId;
+    }
+
+    public static function getAttachmentSrc(int $attachmentId): string
+    {
+        $src = wp_get_attachment_image_src($attachmentId, 'full');
+
+        return $src[0] ?? '';
+    }
+
+    public static function getAttachmentDimensions(int $attachmentId, string $dimension = 'width'): int
+    {
+        $data = wp_get_attachment_image_src($attachmentId, 'full');
+
+        if ($dimension === 'width' && isset($data[1])) {
+            return (int) $data[1];
+        }
+
+        if ($dimension === 'height' && isset($data[2])) {
+            return (int) $data[2];
+        }
+
+        return 0;
+    }
+
+    public static function getAttachmentTitle(int $attachmentId): string
+    {
+        return trim(
+            wp_strip_all_tags(
+                (string) get_post_meta($attachmentId, '_wp_attachment_image_alt', true)
+            )
+        );
+    }
+
+    public function loadTextdomain(): void
+    {
+        load_plugin_textdomain(
+            'unique-headers',
+            false,
+            dirname(plugin_basename(dirname(__DIR__) . '/index.php')) . '/languages'
+        );
+    }
+
+    public function wpdbFix(): void
+    {
+        if (!class_exists('Taxonomy_Metadata')) {
+            return;
+        }
+
+        global $wpdb;
+
+        $wpdb->taxonomymeta = $wpdb->prefix . 'taxonomymeta';
+    }
+
+    public function fallbackImages(int $postId): int
+    {
+        $keys = [
+            'post_custom-header_thumbnail_id',
+            'page_custom-header_thumbnail_id',
+            'kd_custom-header_post_id',
+            'kd_custom-header_page_id',
+            '_unique_header_id',
+            '_custom_header_image',
+        ];
+
+        $attachmentId = 0;
+        $keysToRemove = [];
+
+        foreach ($keys as $key) {
+            if (!$attachmentId) {
+                $found = (int) get_post_meta($postId, $key, true);
+                if ($found) {
+                    $attachmentId = $found;
+                    $keysToRemove[] = $key;
+                }
+            }
+        }
+
+        if (!$attachmentId) {
+            return 0;
+        }
+
+        update_post_meta($postId, '_custom_header_image_id', $attachmentId);
+
+        foreach ($keysToRemove as $key) {
+            delete_post_meta($postId, $key);
+        }
+
+        return $attachmentId;
+    }
+
+    public function addMetaBox(): void
+    {
+        $postTypes = get_post_types(['public' => true]);
+
+        foreach ($postTypes as $screen) {
+            add_meta_box(
+                $this->name,
+                __('Custom header', 'unique-headers'),
+                [$this, 'displayMetaBox'],
+                $screen,
+                'side'
+            );
+        }
+    }
+
+    public function enqueueScripts(): void
+    {
+        wp_enqueue_media();
+
+        wp_enqueue_script(
+            $this->name,
+            $this->dirUri . '/admin.js',
+            ['jquery'],
+            $this->version,
+            true
+        );
+
+        wp_localize_script($this->name, 'custom_meta_image_name', [$this->name]);
+    }
+
+    public function enqueueStyles(): void
+    {
+        wp_enqueue_style(
+            $this->name,
+            $this->dirUri . '/admin.css',
+            [],
+            $this->version
+        );
+    }
+
+    public function savePost(int $postId): int
+    {
+        if (
+            !isset($_POST[$this->name . '-nonce'])
+            || !isset($_POST[$this->name . '-id'])
+        ) {
+            return $postId;
+        }
+
+        $nonce = sanitize_text_field(wp_unslash($_POST[$this->name . '-nonce']));
+        if (!wp_verify_nonce($nonce, $this->name)) {
+            return $postId;
+        }
+
+        $attachmentId = sanitize_text_field(wp_unslash($_POST[$this->name . '-id']));
+        update_post_meta($postId, '_' . $this->nameUnderscores . '_id', $attachmentId);
+
+        return $postId;
+    }
+
+    public function displayMetaBox(\WP_Post $post): void
+    {
+        $attachmentId = self::getAttachmentId($post->ID, $this->nameUnderscores);
+        $url = self::getAttachmentSrc($attachmentId);
+        $title = self::getAttachmentTitle($attachmentId);
+
+        wp_nonce_field($this->name, $this->name . '-nonce');
+        ?>
+
+        <p class="hide-if-no-js">
+            <a title="<?php echo esc_attr__('Set Custom Header Image', 'unique-headers'); ?>" href="javascript:;" id="<?php echo esc_attr('set-' . $this->name . '-thumbnail'); ?>" class="set-custom-meta-image-thumbnail"><?php echo esc_html__('Set Custom Header Image', 'unique-headers'); ?></a>
+        </p>
+
+        <div id="<?php echo esc_attr($this->name . '-container'); ?>" class="custom-meta-image-container hidden">
+            <img src="<?php echo esc_url($url); ?>" alt="<?php echo esc_attr($title); ?>" title="<?php echo esc_attr($title); ?>" />
+        </div>
+
+        <p class="hide-if-no-js hidden">
+            <a title="<?php echo esc_attr__('Remove Custom Header Image', 'unique-headers'); ?>" href="javascript:;" id="<?php echo esc_attr('remove-' . $this->name . '-thumbnail'); ?>" class="remove-custom-meta-image-thumbnail"><?php echo esc_html__('Remove Custom Header Image', 'unique-headers'); ?></a>
+        </p>
+
+        <p id="<?php echo esc_attr($this->name . '-info'); ?>" class="custom-meta-image-info">
+            <input type="hidden" id="<?php echo esc_attr($this->name . '-id'); ?>" class="custom-meta-image-id" name="<?php echo esc_attr($this->name . '-id'); ?>" value="<?php echo esc_attr((string) $attachmentId); ?>" />
+        </p>
+
+        <?php
+    }
+}
