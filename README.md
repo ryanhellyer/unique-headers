@@ -2,40 +2,8 @@
 
 Adds the ability to use unique custom header images on individual pages, posts or categories or tags.
 
+This plugin has been actively maintained since 2012 and is used on over 20,000 websites worldwide.
 
-## Architecture
-
-The plugin uses:
-
-- **PSR-4 autoloading** - classes in `src/` are autoloaded via Composer under the `RyanHellyer\UniqueHeaders` namespace.
-- **Inpsyde Modularity** - the plugin is structured as two modules implementing `ExecutableModule`, bootstrapped via the library's `Package` class.
-- **TypeScript** - admin JavaScript is written in TypeScript and compiled to ES5 with esbuild.
-
-```
-.
-+-- .github/workflows/ci.yml     # GitHub Actions CI
-+-- assets/
-|   +-- admin.css                # Admin styles
-|   +-- admin.js                 # Compiled JS (from src/ts/admin.ts)
-+-- bin/generate-readme.php      # README generator
-+-- composer.json
-+-- index.php                    # Plugin entry point, boots Modularity Package
-+-- phpcs.xml.dist               # PHP_CodeSniffer configuration
-+-- phpstan.neon                 # PHPStan configuration
-+-- readme.txt                   # WordPress.org plugin readme
-+-- src/
-|   +-- AdminModule.php          # Admin meta box module
-|   +-- AttachmentHelper.php     # Attachment helper service
-|   +-- DisplayModule.php        # Front-end display module
-|   +-- DotorgPluginReview.php   # Review notice class
-|   +-- ts/
-|       +-- admin.ts             # TypeScript source
-+-- tests/
-|   +-- SmokeTest.php            # Smoke tests
-|   +-- bootstrap.php            # WordPress function stubs
-+-- views/
-    +-- meta-box.php             # Shared partial template for image picker
-```
 
 ## Installation
 
@@ -132,6 +100,40 @@ Mostly, but I only actively support the latest version of WordPress. Support for
 
 Yes. Just send me a message via <a href="https://ryan.hellyer.kiwi/contact/">my contact form</a> with precise information about what you require.
 
+
+## Architecture
+
+The plugin uses:
+
+- **PSR-4 autoloading** - classes in `src/` are autoloaded via Composer under the `RyanHellyer\UniqueHeaders` namespace.
+- **Inpsyde Modularity** - the plugin is structured as two modules implementing `ExecutableModule`, bootstrapped via the library's `Package` class.
+- **TypeScript** - admin JavaScript is written in TypeScript and compiled to ES5 with esbuild.
+
+```
+.
++-- .github/workflows/ci.yml     # GitHub Actions CI
++-- assets/
+|   +-- admin.css                # Admin styles
+|   +-- admin.js                 # Compiled JS (from src/ts/admin.ts)
++-- bin/generate-readme.php      # README generator
++-- composer.json
++-- index.php                    # Plugin entry point, boots Modularity Package
++-- phpcs.xml.dist               # PHP_CodeSniffer configuration
++-- phpstan.neon                 # PHPStan configuration
++-- readme.txt                   # WordPress.org plugin readme
++-- src/
+|   +-- AdminModule.php          # Admin meta box module
+|   +-- AttachmentHelper.php     # Attachment helper service
+|   +-- DisplayModule.php        # Front-end display module
+|   +-- DotorgPluginReview.php   # Review notice class
+|   +-- ts/
+|       +-- admin.ts             # TypeScript source
++-- tests/
+|   +-- SmokeTest.php            # Smoke tests
+|   +-- bootstrap.php            # WordPress function stubs
++-- views/
+    +-- meta-box.php             # Shared partial template for image picker
+```
 
 ## Quality
 

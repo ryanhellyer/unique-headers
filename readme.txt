@@ -10,6 +10,8 @@ Stable tag: 2.0
 
 Adds the ability to use unique custom header images on individual pages, posts or categories or tags.
 
+This plugin has been actively maintained since 2012 and is used on over 20,000 websites worldwide.
+
 == Description ==
 
 = Features =

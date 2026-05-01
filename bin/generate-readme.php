@@ -161,7 +161,6 @@ $contributing = '## Contributing
 $parts = explode("\n## ", $markdown, 2);
 
 $body = $parts[0] . "\n\n";
-$body .= $architecture;
 
 $sections = [];
 
@@ -181,6 +180,7 @@ foreach ($ordered as $name) {
     }
 }
 
+$body .= $architecture;
 $body .= $quality;
 $body .= $contributing;
 
