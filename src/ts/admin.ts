@@ -1,6 +1,16 @@
 declare const custom_meta_image_name: string[];
 declare const wp: any;
 
+/* A Gutenberg sidebar panel was considered as a more modern alternative to
+ * this classic meta box. It was rejected because:
+ *
+ * 1. It would require maintaining two separate systems (classic meta box for
+ *    the Classic Editor plugin, Gutenberg panel for the block editor).
+ * 2. Modern full site editing themes don't use the WordPress custom header
+ *    system at all, making this plugin incompatible with them regardless of
+ *    which editor is used.
+ */
+
 class UniqueHeaders {
     private name: string;
     private fileFrame: any = null;
