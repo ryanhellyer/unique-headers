@@ -167,7 +167,7 @@ class AdminModule implements ExecutableModule
             return;
         }
 
-        $attachmentId = sanitize_text_field(wp_unslash($_POST[$this->name . '-id']));
+        $attachmentId = absint($_POST[$this->name . '-id']);
         update_post_meta($postId, '_' . $this->nameUnderscores . '_id', $attachmentId);
     }
 
