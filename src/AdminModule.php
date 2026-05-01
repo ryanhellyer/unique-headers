@@ -151,6 +151,10 @@ class AdminModule implements ExecutableModule
 
     public function savePost(int $postId): void
     {
+        if (!current_user_can('edit_post', $postId)) {
+            return;
+        }
+
         if (
             !isset($_POST[$this->name . '-nonce'])
             || !isset($_POST[$this->name . '-id'])

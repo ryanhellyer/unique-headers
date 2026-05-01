@@ -176,6 +176,11 @@ class DisplayModule implements ExecutableModule
         }
 
         $tagId = absint(wp_unslash($_POST['tag_ID']));
+
+        if (!current_user_can('edit_term', $tagId)) {
+            return;
+        }
+
         $attachmentId = absint(wp_unslash($_POST[$this->name . '-id']));
 
         update_term_meta($tagId, 'taxonomy-header-image', $attachmentId);
