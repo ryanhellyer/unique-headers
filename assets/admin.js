@@ -28,28 +28,16 @@ function renderMediaUploader( $ ) {
 	 * If we're this far, then an instance does not exist, so we need to
 	 * create our own.
 	 *
-	 * Here, use the wp.media library to define the settings of the Media
-	 * Uploader. We're opting to use the 'post' frame which is a template
-	 * defined in WordPress core and are initializing the file frame
-	 * with the 'insert' state.
-	 *
-	 * We're also not allowing the user to select more than one image.
+	 * We're using the 'select' frame to avoid conflicts with the
+	 * shortcode UI plugin, which expects wpActiveEditor to be set
+	 * (only available when opening from TinyMCE).
 	 */
 	file_frame = wp.media.frames.file_frame = wp.media({
-		frame:    'post',
-		state:    'insert',
+		frame:    'select',
 		multiple: false
 	});
 
-	/**
-	 * Setup an event handler for what to do when an image has been
-	 * selected.
-	 *
-	 * Since we're using the 'view' state when initializing
-	 * the file_frame, we need to make sure that the handler is attached
-	 * to the insert event.
-	 */
-	file_frame.on( 'insert', function() {
+	file_frame.on( 'select', function() {
 
 		// Read the JSON data returned from the Media Uploader
 		json = file_frame.state().get( 'selection' ).first().toJSON();
