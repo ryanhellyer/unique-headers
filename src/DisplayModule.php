@@ -9,12 +9,14 @@ use Psr\Container\ContainerInterface;
 
 class DisplayModule implements ExecutableModule
 {
+    private AttachmentHelper $attachmentHelper;
     private string $name = 'custom-header-image';
     private string $nameUnderscores;
     private array $taxonomies = [];
 
-    public function __construct()
+    public function __construct(AttachmentHelper $attachmentHelper)
     {
+        $this->attachmentHelper = $attachmentHelper;
         $this->nameUnderscores = str_replace('-', '_', $this->name);
     }
 
@@ -46,10 +48,10 @@ class DisplayModule implements ExecutableModule
         }
 
         $postId = is_home() ? (int) get_option('page_for_posts') : (int) get_the_ID();
-        $attachmentId = AdminModule::getAttachmentId($postId, $this->nameUnderscores);
+        $attachmentId = $this->attachmentHelper->getId($postId, $this->nameUnderscores);
 
         if ($attachmentId) {
-            $url = AdminModule::getAttachmentSrc($attachmentId);
+            $url = $this->attachmentHelper->getSrc($attachmentId);
         }
 
         return $url;
@@ -63,7 +65,7 @@ class DisplayModule implements ExecutableModule
 
         $postId = is_home() ? (int) get_option('page_for_posts') : (int) get_the_ID();
 
-        return $this->setAttachmentData($data, AdminModule::getAttachmentId($postId, $this->nameUnderscores));
+        return $this->setAttachmentData($data, $this->attachmentHelper->getId($postId, $this->nameUnderscores));
     }
 
     public function taxonomyHeaderImageFilter(string $url): string
@@ -76,11 +78,11 @@ class DisplayModule implements ExecutableModule
         $attachmentId = get_term_meta($taxId, 'taxonomy-header-image', true);
 
         if (is_numeric($attachmentId)) {
-            $newUrl = AdminModule::getAttachmentSrc((int) $attachmentId);
+            $newUrl = $this->attachmentHelper->getSrc((int) $attachmentId);
         } else {
             $legacy = get_metadata('taxonomy', $taxId, 'taxonomy-header-image', true);
             if (is_numeric($legacy)) {
-                $newUrl = AdminModule::getAttachmentSrc((int) $legacy);
+                $newUrl = $this->attachmentHelper->getSrc((int) $legacy);
             } else {
                 $newUrl = $legacy ?: '';
             }
@@ -167,13 +169,13 @@ class DisplayModule implements ExecutableModule
         $attachmentId = get_term_meta($tagId, 'taxonomy-header-image', true);
 
         if (is_numeric($attachmentId)) {
-            $url = AdminModule::getAttachmentSrc((int) $attachmentId);
-            $title = AdminModule::getAttachmentTitle((int) $attachmentId);
+            $url = $this->attachmentHelper->getSrc((int) $attachmentId);
+            $title = $this->attachmentHelper->getTitle((int) $attachmentId);
         } else {
             $legacy = get_metadata('taxonomy', $tagId, 'taxonomy-header-image', true);
             if (is_numeric($legacy)) {
-                $url = AdminModule::getAttachmentSrc((int) $legacy);
-                $title = AdminModule::getAttachmentTitle((int) $legacy);
+                $url = $this->attachmentHelper->getSrc((int) $legacy);
+                $title = $this->attachmentHelper->getTitle((int) $legacy);
                 $attachmentId = $legacy;
             } else {
                 $url = $legacy ?: '';
@@ -222,9 +224,9 @@ class DisplayModule implements ExecutableModule
         }
 
         if ($postId) {
-            $attachmentId = AdminModule::getAttachmentId($postId, $this->nameUnderscores);
+            $attachmentId = $this->attachmentHelper->getId($postId, $this->nameUnderscores);
             if ($attachmentId) {
-                return AdminModule::getAttachmentSrc($attachmentId);
+                return $this->attachmentHelper->getSrc($attachmentId);
             }
         }
 
@@ -232,7 +234,7 @@ class DisplayModule implements ExecutableModule
         if ($taxId) {
             $attachmentId = (int) get_term_meta($taxId, 'taxonomy-header-image', true);
             if ($attachmentId) {
-                return AdminModule::getAttachmentSrc($attachmentId);
+                return $this->attachmentHelper->getSrc($attachmentId);
             }
         }
 
@@ -281,8 +283,8 @@ class DisplayModule implements ExecutableModule
 
         if (is_object($data)) {
             $data->attachment_id = $attachmentId;
-            $data->width = AdminModule::getAttachmentDimensions($attachmentId, 'width');
-            $data->height = AdminModule::getAttachmentDimensions($attachmentId, 'height');
+            $data->width = $this->attachmentHelper->getDimensions($attachmentId, 'width');
+            $data->height = $this->attachmentHelper->getDimensions($attachmentId, 'height');
         }
 
         return $data;

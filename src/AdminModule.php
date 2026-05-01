@@ -9,13 +9,15 @@ use Psr\Container\ContainerInterface;
 
 class AdminModule implements ExecutableModule
 {
+    private AttachmentHelper $attachmentHelper;
     private string $name = 'custom-header-image';
     private string $nameUnderscores;
     private string $dirUri;
     private string $version = '1.3';
 
-    public function __construct()
+    public function __construct(AttachmentHelper $attachmentHelper)
     {
+        $this->attachmentHelper = $attachmentHelper;
         $this->nameUnderscores = str_replace('-', '_', $this->name);
         $this->dirUri = plugin_dir_url(dirname(__DIR__) . '/index.php') . 'assets';
     }
@@ -48,48 +50,6 @@ class AdminModule implements ExecutableModule
         add_action('save_post', [$this, 'savePost']);
 
         return true;
-    }
-
-    public static function getAttachmentId(int $postId, string $name): int
-    {
-        $attachmentId = (int) get_post_meta($postId, '_' . $name . '_id', true);
-
-        if (!$attachmentId) {
-            $attachmentId = (int) apply_filters('unique_header_fallback_images', $postId);
-        }
-
-        return $attachmentId;
-    }
-
-    public static function getAttachmentSrc(int $attachmentId): string
-    {
-        $src = wp_get_attachment_image_src($attachmentId, 'full');
-
-        return $src[0] ?? '';
-    }
-
-    public static function getAttachmentDimensions(int $attachmentId, string $dimension = 'width'): int
-    {
-        $data = wp_get_attachment_image_src($attachmentId, 'full');
-
-        if ($dimension === 'width' && isset($data[1])) {
-            return (int) $data[1];
-        }
-
-        if ($dimension === 'height' && isset($data[2])) {
-            return (int) $data[2];
-        }
-
-        return 0;
-    }
-
-    public static function getAttachmentTitle(int $attachmentId): string
-    {
-        return trim(
-            wp_strip_all_tags(
-                (string) get_post_meta($attachmentId, '_wp_attachment_image_alt', true)
-            )
-        );
     }
 
     public function loadTextdomain(): void
@@ -211,9 +171,9 @@ class AdminModule implements ExecutableModule
 
     public function displayMetaBox(\WP_Post $post): void
     {
-        $attachmentId = self::getAttachmentId($post->ID, $this->nameUnderscores);
-        $url = self::getAttachmentSrc($attachmentId);
-        $title = self::getAttachmentTitle($attachmentId);
+        $attachmentId = $this->attachmentHelper->getId($post->ID, $this->nameUnderscores);
+        $url = $this->attachmentHelper->getSrc($attachmentId);
+        $title = $this->attachmentHelper->getTitle($attachmentId);
 
         wp_nonce_field($this->name, $this->name . '-nonce');
         ?>

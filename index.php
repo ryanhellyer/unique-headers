@@ -33,6 +33,7 @@ declare(strict_types=1);
 use Inpsyde\Modularity\Package;
 use Inpsyde\Modularity\Properties\PluginProperties;
 use RyanHellyer\UniqueHeaders\AdminModule;
+use RyanHellyer\UniqueHeaders\AttachmentHelper;
 use RyanHellyer\UniqueHeaders\DisplayModule;
 
 $autoloader = __DIR__ . '/vendor/autoload.php';
@@ -41,8 +42,10 @@ if (! file_exists($autoloader)) {
 }
 require_once $autoloader;
 
+$helper = new AttachmentHelper();
+
 $properties = PluginProperties::new(__FILE__);
 $package = Package::new($properties);
-$package->addModule(new AdminModule());
-$package->addModule(new DisplayModule());
+$package->addModule(new AdminModule($helper));
+$package->addModule(new DisplayModule($helper));
 $package->boot();
