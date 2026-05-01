@@ -126,6 +126,11 @@ class AdminModule implements ExecutableModule
 
     public function enqueueScripts(): void
     {
+        $screen = get_current_screen();
+        if ($screen === null || !in_array($screen->base, ['post', 'term'], true)) {
+            return;
+        }
+
         wp_enqueue_media();
 
         wp_enqueue_script(
@@ -141,6 +146,11 @@ class AdminModule implements ExecutableModule
 
     public function enqueueStyles(): void
     {
+        $screen = get_current_screen();
+        if ($screen === null || !in_array($screen->base, ['post', 'term'], true)) {
+            return;
+        }
+
         wp_enqueue_style(
             $this->name,
             $this->dirUri . '/admin.css',
