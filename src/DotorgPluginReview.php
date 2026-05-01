@@ -11,6 +11,9 @@ class DotorgPluginReview
     private int $timeLimit;
     public string $nobugOption;
 
+    /**
+     * @param array{slug: string, name: string, time_limit?: int} $args
+     */
     public function __construct(array $args)
     {
         $this->slug = $args['slug'];

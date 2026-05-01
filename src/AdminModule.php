@@ -149,24 +149,22 @@ class AdminModule implements ExecutableModule
         );
     }
 
-    public function savePost(int $postId): int
+    public function savePost(int $postId): void
     {
         if (
             !isset($_POST[$this->name . '-nonce'])
             || !isset($_POST[$this->name . '-id'])
         ) {
-            return $postId;
+            return;
         }
 
         $nonce = sanitize_text_field(wp_unslash($_POST[$this->name . '-nonce']));
         if (!wp_verify_nonce($nonce, $this->name)) {
-            return $postId;
+            return;
         }
 
         $attachmentId = sanitize_text_field(wp_unslash($_POST[$this->name . '-id']));
         update_post_meta($postId, '_' . $this->nameUnderscores . '_id', $attachmentId);
-
-        return $postId;
     }
 
     public function displayMetaBox(\WP_Post $post): void

@@ -12,6 +12,8 @@ class DisplayModule implements ExecutableModule
     private AttachmentHelper $attachmentHelper;
     private string $name = 'custom-header-image';
     private string $nameUnderscores;
+
+    /** @var array<string, string> */
     private array $taxonomies = [];
 
     public function __construct(AttachmentHelper $attachmentHelper)
@@ -57,6 +59,10 @@ class DisplayModule implements ExecutableModule
         return $url;
     }
 
+    /**
+     * @param object|null $data
+     * @return object|null
+     */
     public function postModifyHeaderImageData($data)
     {
         if (!is_single() && !is_page() && !is_home()) {
@@ -91,6 +97,10 @@ class DisplayModule implements ExecutableModule
         return $newUrl !== '' ? esc_url($newUrl) : $url;
     }
 
+    /**
+     * @param object|null $data
+     * @return object|null
+     */
     public function taxonomyModifyHeaderImageData($data)
     {
         if (!is_tag() && !is_tax() && !is_category()) {
@@ -105,7 +115,15 @@ class DisplayModule implements ExecutableModule
         return $this->setAttachmentData($data, (int) get_term_meta($taxId, 'taxonomy-header-image', true));
     }
 
-    public function headerSrcsetFilter($srcset, $sizeArray, $imageSrc, $imageMeta, $attachmentId = 0)
+    /**
+     * @param array<int, array{url: string}>|string $srcset
+     * @param array<int, int> $sizeArray
+     * @param string $imageSrc
+     * @param array<string, mixed> $imageMeta
+     * @param int $attachmentId
+     * @return array<int, array{url: string}>|string
+     */
+    public function headerSrcsetFilter($srcset, $sizeArray, $imageSrc, $imageMeta, int $attachmentId = 0)
     {
         if (
             !isset(get_custom_header()->attachment_id)
@@ -263,7 +281,7 @@ class DisplayModule implements ExecutableModule
             return $data;
         }
 
-        if ($data === null || empty($data)) {
+        if ($data === null) {
             $data = (object) null;
         }
 
