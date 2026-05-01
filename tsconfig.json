@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "none",
+        "strict": true,
+        "outDir": "assets",
+        "rootDir": "src/ts",
+        "sourceMap": false,
+        "declaration": false,
+        "noEmit": true,
+        "removeComments": true
+    },
+    "include": [
+        "src/ts/*.ts"
+    ]
+}

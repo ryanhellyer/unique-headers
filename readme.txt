@@ -4,7 +4,7 @@ Tags: custom-header, header, headers, images, page, post, plugin, image, images,
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
 Tested up to: 7.0
-Stable tag: 1.9.4
+Stable tag: 2.0
 
 
 
@@ -92,170 +92,211 @@ Yes. Just send me a message via <a href="https://ryan.hellyer.kiwi/contact/">my 
 
 == Changelog ==
 
-= 1.9.4 =
+= 2.0 (2026-05-01) =
+* Major architectural overhaul: migrated to PSR-4 autoloading with Composer and Inpsyde Modularity
+* Replaced legacy classes with AdminModule, DisplayModule, and AttachmentHelper service
+* Rewrote admin JavaScript as ES6 class without jQuery
+* Migrated admin JavaScript to TypeScript with esbuild build pipeline
+* Added shared view partial for image meta box
+* Added PHP_CodeSniffer (PSR-12), PHPStan (level 6), PHP-CS-Fixer, and PHPUnit tooling
+* Added unit tests with WordPress function stubs
+* Added GitHub Actions CI workflow (PHP 8.2-8.5)
+* Security: added capability checks to savePost and storeTaxonomyData
+* Security: changed attachment ID sanitization from sanitize_text_field to absint
+* Performance: scoped admin asset enqueues to post and term edit screens only
+* Performance: consolidated taxonomy attachment lookup into shared helper
+* Bug fix: prevented Shortcode UI plugin crash by setting wpActiveEditor dummy
+* Bug fix: corrected broken URL check in admin.js media uploader
+
+= 1.9.4 (2026-04-29) =
 * Version number bump
 
-= 1.9.3 =
+= 1.9.3 (2023-10-26) =
 * Fixed a bug in the DotOrg_Plugin_Review() class. The switch to === broke the no debug check, so this has been fixed.
 
-= 1.9.2 =
+= 1.9.2 (2023-10-26) =
 * Fixed a bug in the nonce system for taxonomy terms.
 
-= 1.9.1 =
+= 1.9.1 (2023-10-26) =
 * Temporarily preventing the DotOrg_Plugin_Review() class from loading due to a bug report relating to it. It will be re-added later.
 
-= 1.9 =
+= 1.9 (2023-10-20) =
 * Updated WordPress coding standards support
 
-= 1.8.3 =
+= 1.8.3 (2023-09-14) =
 * Confirmed support for newer WordPress versions
 * Added Composer support
 
-= 1.8.2 =
+= 1.8.2 (2022-10-14) =
 * Bug fix for when array value doesn't exist
 
-= 1.8.1 =
+= 1.8.1 (2022-01-16) =
 * Bug fix for offset value error
 
-= 1.8 =
+= 1.8 (2021-04-11) =
 * Bug fix for "WP_Scripts::localize was called" notice
 
-= 1.7.12 =
+= 1.7.12 (2021-04-06) =
 * Bug fix for when no object set in Unique_Headers_Taxonomy_Header_Images::modify_header_image_data()
 
-= 1.7.11 =
+= 1.7.11 (2020-03-08) =
 * Version bump to force dot org update
 
-= 1.7.10 =
+= 1.7.10 (2017-12-07) =
 * Correctly checking for presence of object before setting width and height
 
-= 1.7.9 =
+= 1.7.9 (2017-07-16) =
 * Checking for presence of object before setting width and height
 
-= 1.7.8 =
+= 1.7.8 (2017-03-28) =
 * Fixing filter bug
 
-= 1.7.7 =
+= 1.7.7 (2017-03-28) =
 * Fixing filter bug
 
-= 1.7.6 =
+= 1.7.6 (2017-03-28) =
 * Fixing bug in taxonomy setup
 
-= 1.7.5 =
+= 1.7.5 (2017-03-27) =
 * Fixing bug in taxonomy setup
 
-= 1.7.4 =
+= 1.7.4 (2017-03-27) =
 * Fixing bug in taxonomy setup
 
-= 1.7.3 =
+= 1.7.3 (2017-03-25) =
 * Bug fix for srcset with taxonomies
 * Changed to class autoloader
 * Moved instantiation class to it's own file
 * Added extendible core class
 
-= 1.7.2 =
+= 1.7.2 (2017-03-25) =
 * Bug fix for custom taxonomies
 
-= 1.7.1 =
+= 1.7.1 (2017-03-25) =
 * Bug fix to make srcset work correctly on regular header images
 
-= 1.7 =
+= 1.7 (2017-03-25) =
 * Added support for srcset.
 * Confirmed support for TwentySixteen theme.
 
-= 1.6.1 =
+= 1.6.1 (2016-10-26) =
 * Added checks in file to see if WordPress is loaded.
 * Hooking class instantiation in later, due to taxonomies sometimes not being loaded in time.
 
-= 1.6 =
+= 1.6 (2016-10-26) =
 * Removed admin notice from everywhere but the plugins page.
 
-= 1.5.3 =
+= 1.5.3 (2016-06-19) =
 * Fixing flawed bug fix from version 1.5.2.
 
-= 1.5.2 =
+= 1.5.2 (2016-06-19) =
 * Fixing bug reported by multiple users, which caused PHP errors on some setups.
 
-= 1.5.1 =
+= 1.5.1 (2016-04-15) =
 * Overhauled outdated FAQ section of readme.
 
-= 1.5 =
+= 1.5 (2016-03-22) =
 * Introduced unlimited taxonomy support.
 * When using a blog page set to a static page URL, the image from the static pages custom header will be used.
 * Adding support for all publicly viewable post-types.
 * Adding support for all publicly viewable taxonomies.
 
-= 1.4.8 =
+= 1.4.8 (2016-03-20) =
 * Fixing a bug triggered by WordPress assigning non-URL's as the URL.
 
-= 1.4.7
+= 1.4.7 (2015-12-13) =
 * Setting a more sane plugin review time.
 
-= 1.4.6 =
+= 1.4.6 (2015-10-31) =
 * Fixing bug with handling taxonomies. Added plugin review notice back, but without the non-existent MONTH_IN_SECONDS constant.
 
-= 1.4.5 =
+= 1.4.5 (2015-10-29) =
 * Removing plugin review notice due to unsolvable errors.
 
-= 1.4.4 =
+= 1.4.4 (2015-10-28) =
 * Adding plugin review class back, with correct time stamp set.
 
-= 1.4.3 =
+= 1.4.3 (2015-10-28) =
 * Temporarily removing plugin review class until bugs are fixed.
 
-= 1.4.2 =
+= 1.4.2 (2015-10-27) =
 * Adding a plugin review class.
 
-= 1.4.1 =
+= 1.4.1 (2015-10-26) =
 * Instantiating the plugin later (allows for adding additional post-types in themes).
 
-= 1.4 =
+= 1.4 (2015-08-21) =
 * Adding backwards compatibility to maintain header images provided by the Taxonomy metadata plugin.
 
-= 1.3.12 =
+= 1.3.12 (2015-03-24) =
 * Added French language translation.
 
-= 1.3.11 =
+= 1.3.11 (2015-02-19) =
 * Moved instantiation and localization code into a class.
 
-= 1.3.10 =
+= 1.3.10 (2015-02-18) =
 * Added Deutsch (German) language translation.
 
-= 1.3.9 =
+= 1.3.9 (2015-01-04) =
 * Fixing error which caused header images to disappear on upgrading (data was still available just not accessed correctly).
 
-= 1.3.8 =
+= 1.3.8 (2014-12-21) =
 * Modification translation system to work with changes on WordPress.org.
 
-= 1.3.7 =
+= 1.3.7 (2014-12-20) =
 * Addition of Spanish translation.
- 
-= 1.3.1 =
+
+= 1.3.1 (2014-12-19) =
 * Adjustment to match post meta key to other plugins, for compatibilty reasons.
 
-= 1.3 =
+= 1.3 (2014-11-03) =
 * Total rewrite to use custom built in system for media uploads. Also adapted taxonomies to use ID's and added support for extra post-types and taxonomies.
 
-= 1.2 =
+= 1.2 (2014-07-13) =
 * Converted to use the class from the Multiple Featured Images plugin.
 
-= 1.1 =
+= 1.1 (2014-04-19) =
 * Added support for tags.
 
-= 1.0.4 =
+= 1.0.4 (2013-02-14) =
 * Added support for displaying a category specific image on the single post pages.
 
-= 1.0.3 =
+= 1.0.3 (2012-12-09) =
 * Correction for $new_url for categories.
 
-= 1.0.2 =
+= 1.0.2 (2012-12-02) =
 * Bug fix to allow default header to display when no category specified.
 
-= 1.0.1 =
+= 1.0.1 (2012-11-07) =
 * Bug fixes for post/page thumbnails.
 
-= 1.0 =
+= 1.0 (2012-08-22) =
 * Initial release.
+
+
+== Development ==
+
+This section is only relevant for developers building the plugin from source (e.g. cloning from GitHub). If you installed via WordPress.org, the plugin is ready to use — no build steps required.
+
+The plugin uses Composer for PHP autoloading and dependencies, npm for JavaScript tooling, and TypeScript for admin JavaScript.
+
+To set up a development environment:
+
+1. Install PHP dependencies: <code>composer install</code>
+2. Install JavaScript dependencies: <code>npm install</code>
+3. Compile TypeScript to JavaScript: <code>npm run build</code>
+
+To run tests and analysis:
+
+- PHPCS (PSR-12 coding standards): <code>composer phpcs</code>
+- Auto-fix PHPCS violations: <code>composer phpcbf</code>
+- PHP-CS-Fixer (dry-run): <code>composer cs</code>
+- PHP-CS-Fixer (auto-fix): <code>composer cs:fix</code>
+- PHPStan static analysis: <code>composer phpstan</code>
+- PHPUnit unit tests: <code>composer test</code>
+- TypeScript type checking: <code>npm run typecheck</code>
+
+TypeScript source files are in <code>src/ts/</code>. The compiled output is written to <code>assets/admin.js</code> and is what WordPress loads on the admin side.
 
 
 = Credits =

@@ -1,0 +1,12 @@
+vendor/
+composer.lock
+package-lock.json
+.DS_Store
+Thumbs.db
+*.log
+.phpunit.result.cache
+.php-cs-fixer.cache
+.phpcs-cache
+node_modules/
+build/
+assets/admin.js
