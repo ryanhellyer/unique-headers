@@ -202,6 +202,13 @@ If you would like to pay for assistance, additional features to be added to the 
 
 ## Changelog
 
+### 2.0.1 - 2026-05-01
+
+* CI: restricted PHP version matrix to 8.4 and 8.5
+* CI: fixed lock file resolution issue for different PHP versions
+* Docs: added plugin longevity note (since 2012, 20,000+ sites)
+* Docs: reorganized README sections for better user experience
+
 ### 2.0 - 2026-05-01
 
 * Major architectural overhaul: migrated to PSR-4 autoloading with Composer and Inpsyde Modularity

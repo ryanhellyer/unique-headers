@@ -4,7 +4,7 @@ Tags: custom-header, header, headers, images, page, post, plugin, image, images,
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
 Tested up to: 7.0
-Stable tag: 2.0
+Stable tag: 2.0.1
 
 
 
@@ -93,6 +93,12 @@ Yes. Just send me a message via <a href="https://ryan.hellyer.kiwi/contact/">my 
 
 
 == Changelog ==
+
+= 2.0.1 (2026-05-01) =
+* CI: restricted PHP version matrix to 8.4 and 8.5
+* CI: fixed lock file resolution issue for different PHP versions
+* Docs: added plugin longevity note (since 2012, 20,000+ sites)
+* Docs: reorganized README sections for better user experience
 
 = 2.0 (2026-05-01) =
 * Major architectural overhaul: migrated to PSR-4 autoloading with Composer and Inpsyde Modularity
