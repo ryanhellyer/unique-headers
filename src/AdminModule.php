@@ -131,7 +131,7 @@ class AdminModule implements ExecutableModule
         wp_enqueue_script(
             $this->name,
             $this->dirUri . '/admin.js',
-            ['jquery'],
+            [],
             $this->version,
             true
         );
