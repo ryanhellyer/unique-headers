@@ -81,20 +81,17 @@ class DisplayModule implements ExecutableModule
             return $url;
         }
 
-        $attachmentId = get_term_meta($taxId, 'taxonomy-header-image', true);
-
-        if (is_numeric($attachmentId)) {
-            $newUrl = $this->attachmentHelper->getSrc((int) $attachmentId);
-        } else {
-            $legacy = get_metadata('taxonomy', $taxId, 'taxonomy-header-image', true);
-            if (is_numeric($legacy)) {
-                $newUrl = $this->attachmentHelper->getSrc((int) $legacy);
-            } else {
-                $newUrl = $legacy ?: '';
-            }
+        $attachmentId = $this->getTaxonomyAttachmentId($taxId);
+        if ($attachmentId) {
+            return esc_url($this->attachmentHelper->getSrc($attachmentId));
         }
 
-        return $newUrl !== '' ? esc_url($newUrl) : $url;
+        $legacy = get_metadata('taxonomy', $taxId, 'taxonomy-header-image', true);
+        if (is_string($legacy) && $legacy !== '') {
+            return esc_url($legacy);
+        }
+
+        return $url;
     }
 
     /**
@@ -112,7 +109,7 @@ class DisplayModule implements ExecutableModule
             return $data;
         }
 
-        return $this->setAttachmentData($data, (int) get_term_meta($taxId, 'taxonomy-header-image', true));
+        return $this->setAttachmentData($data, $this->getTaxonomyAttachmentId($taxId));
     }
 
     /**
@@ -189,22 +186,16 @@ class DisplayModule implements ExecutableModule
     public function extraFields(\WP_Term $term): void
     {
         $tagId = $term->term_id;
-        $attachmentId = get_term_meta($tagId, 'taxonomy-header-image', true);
+        $attachmentId = $this->getTaxonomyAttachmentId($tagId);
 
-        if (is_numeric($attachmentId)) {
-            $url = $this->attachmentHelper->getSrc((int) $attachmentId);
-            $title = $this->attachmentHelper->getTitle((int) $attachmentId);
+        if ($attachmentId) {
+            $url = $this->attachmentHelper->getSrc($attachmentId);
+            $title = $this->attachmentHelper->getTitle($attachmentId);
         } else {
             $legacy = get_metadata('taxonomy', $tagId, 'taxonomy-header-image', true);
-            if (is_numeric($legacy)) {
-                $url = $this->attachmentHelper->getSrc((int) $legacy);
-                $title = $this->attachmentHelper->getTitle((int) $legacy);
-                $attachmentId = $legacy;
-            } else {
-                $url = $legacy ?: '';
-                $title = '';
-                $attachmentId = $legacy;
-            }
+            $url = is_string($legacy) ? $legacy : '';
+            $title = '';
+            $attachmentId = $legacy;
         }
 
         $name = $this->name;
@@ -241,7 +232,7 @@ class DisplayModule implements ExecutableModule
 
         $taxId = $this->getCurrentTaxonomyId();
         if ($taxId) {
-            $attachmentId = (int) get_term_meta($taxId, 'taxonomy-header-image', true);
+            $attachmentId = $this->getTaxonomyAttachmentId($taxId);
             if ($attachmentId) {
                 return $this->attachmentHelper->getSrc($attachmentId);
             }
@@ -274,6 +265,19 @@ class DisplayModule implements ExecutableModule
         }
 
         return 0;
+    }
+
+    private function getTaxonomyAttachmentId(int $taxId): int
+    {
+        $attachmentId = get_term_meta($taxId, 'taxonomy-header-image', true);
+
+        if (is_numeric($attachmentId)) {
+            return (int) $attachmentId;
+        }
+
+        $legacy = get_metadata('taxonomy', $taxId, 'taxonomy-header-image', true);
+
+        return is_numeric($legacy) ? (int) $legacy : 0;
     }
 
     /**
