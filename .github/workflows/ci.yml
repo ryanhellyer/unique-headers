@@ -28,6 +28,7 @@ jobs:
       - run: cp -r build/psr/container vendor/psr/container
       - run: cp -r build/inpsyde/modularity vendor/inpsyde/modularity
       - run: rm -rf build
+      - run: composer dump-autoload
 
       - run: composer phpcs
       - run: composer phpstan

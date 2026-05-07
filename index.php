@@ -42,6 +42,32 @@ if (! file_exists($autoloader)) {
 }
 require_once $autoloader;
 
+// Fallback: if the Composer autoload runtime is missing (e.g. stripped from
+// a production zip), register PSR-4 mappings for scoped dependencies directly.
+if (! interface_exists('RyanHellyer\\UniqueHeaders\\Vendor\\Inpsyde\\Modularity\\Module\\Module')) {
+    spl_autoload_register(static function (string $class): void {
+        $prefixes = [
+            'RyanHellyer\\UniqueHeaders\\Vendor\\Psr\\Container\\'
+                => __DIR__ . '/vendor/psr/container/src/',
+            'RyanHellyer\\UniqueHeaders\\Vendor\\Inpsyde\\Modularity\\'
+                => __DIR__ . '/vendor/inpsyde/modularity/src/',
+            'RyanHellyer\\UniqueHeaders\\'
+                => __DIR__ . '/src/',
+        ];
+        foreach ($prefixes as $prefix => $baseDir) {
+            $len = strlen($prefix);
+            if (strncmp($prefix, $class, $len) !== 0) {
+                continue;
+            }
+            $file = $baseDir . str_replace('\\', '/', substr($class, $len)) . '.php';
+            if (file_exists($file)) {
+                require $file;
+                return;
+            }
+        }
+    });
+}
+
 $helper = new AttachmentHelper();
 
 $properties = PluginProperties::new(__FILE__);

@@ -37,7 +37,9 @@
     },
     "autoload": {
         "psr-4": {
-            "RyanHellyer\\UniqueHeaders\\": "src/"
+            "RyanHellyer\\UniqueHeaders\\": "src/",
+            "RyanHellyer\\UniqueHeaders\\Vendor\\Psr\\Container\\": "vendor/psr/container/src/",
+            "RyanHellyer\\UniqueHeaders\\Vendor\\Inpsyde\\Modularity\\": "vendor/inpsyde/modularity/src/"
         }
     }
 }
