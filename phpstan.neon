@@ -3,6 +3,9 @@ parameters:
     paths:
         - src/
         - index.php
+    scanDirectories:
+        - vendor/psr/container/src
+        - vendor/inpsyde/modularity/src
 
 includes:
     - vendor/szepeviktor/phpstan-wordpress/extension.neon

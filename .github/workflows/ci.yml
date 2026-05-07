@@ -23,7 +23,11 @@ jobs:
 
       - run: composer install --no-progress
 
-      - run: bash build.sh dev
+      - run: vendor/bin/php-scoper add-prefix --output-dir=build --force
+      - run: rm -rf vendor/psr/container vendor/inpsyde/modularity
+      - run: cp -r build/psr/container vendor/psr/container
+      - run: cp -r build/inpsyde/modularity vendor/inpsyde/modularity
+      - run: rm -rf build
 
       - run: composer phpcs
       - run: composer phpstan
