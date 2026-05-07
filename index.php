@@ -4,10 +4,10 @@
 Plugin Name: Unique Headers
 Plugin URI: https://geek.hellyer.kiwi/plugins/unique-headers/
 Description: Unique Headers
-Version: 2.0.1
+Version: 2.1.1
 Author: Ryan Hellyer
 Author URI: https://geek.hellyer.kiwi/
-License: GPL2
+License: GPLv2 or later
 
 ------------------------------------------------------------------------
 Copyright Ryan Hellyer
@@ -30,8 +30,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 declare(strict_types=1);
 
-use Inpsyde\Modularity\Package;
-use Inpsyde\Modularity\Properties\PluginProperties;
+use RyanHellyer\UniqueHeaders\Vendor\Inpsyde\Modularity\Package;
+use RyanHellyer\UniqueHeaders\Vendor\Inpsyde\Modularity\Properties\PluginProperties;
 use RyanHellyer\UniqueHeaders\AdminModule;
 use RyanHellyer\UniqueHeaders\AttachmentHelper;
 use RyanHellyer\UniqueHeaders\DisplayModule;
@@ -41,6 +41,32 @@ if (! file_exists($autoloader)) {
     return;
 }
 require_once $autoloader;
+
+// Fallback: if the Composer autoload runtime is missing (e.g. stripped from
+// a production zip), register PSR-4 mappings for scoped dependencies directly.
+if (! interface_exists('RyanHellyer\\UniqueHeaders\\Vendor\\Inpsyde\\Modularity\\Module\\Module')) {
+    spl_autoload_register(static function (string $class): void {
+        $prefixes = [
+            'RyanHellyer\\UniqueHeaders\\Vendor\\Psr\\Container\\'
+                => __DIR__ . '/vendor/psr/container/src/',
+            'RyanHellyer\\UniqueHeaders\\Vendor\\Inpsyde\\Modularity\\'
+                => __DIR__ . '/vendor/inpsyde/modularity/src/',
+            'RyanHellyer\\UniqueHeaders\\'
+                => __DIR__ . '/src/',
+        ];
+        foreach ($prefixes as $prefix => $baseDir) {
+            $len = strlen($prefix);
+            if (strncmp($prefix, $class, $len) !== 0) {
+                continue;
+            }
+            $file = $baseDir . str_replace('\\', '/', substr($class, $len)) . '.php';
+            if (file_exists($file)) {
+                require $file;
+                return;
+            }
+        }
+    });
+}
 
 $helper = new AttachmentHelper();
 

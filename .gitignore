@@ -9,4 +9,5 @@ Thumbs.db
 .phpcs-cache
 node_modules/
 build/
+unique-headers.zip
 assets/admin.js

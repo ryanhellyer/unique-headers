@@ -1,8 +1,6 @@
 # Unique Headers
 
-Adds the ability to use unique custom header images on individual pages, posts or categories or tags.
-
-This plugin has been actively maintained since 2012 and is used on over 20,000 websites worldwide.
+Add unique custom header images to individual pages, posts, categories, or tags.
 
 
 ## Installation
@@ -166,6 +164,8 @@ All PHP code uses `declare(strict_types=1)` and follows PSR-12.
 
 ## Description
 
+This plugin has been actively maintained since 2012 and is used on over 20,000 websites worldwide.
+
 ### Features
 
 The <a href="https://geek.hellyer.kiwi/products/unique-headers/">Unique Headers Plugin</a> adds a custom header image box to the post/page edit screen. You can use this to upload a unique header image for that post, or use another image from your WordPress media library. When you view that page on the front-end of your site, the default header image for your site will be replaced by the unique header you selected.
@@ -197,6 +197,15 @@ If you would like to pay for assistance, additional features to be added to the 
 
 
 ## Changelog
+
+### 2.1.1 - 2026-05-07
+
+* Fixing version number
+* Shortening readme description to meet WordPress.org requirements
+
+### 2.1 - 2026-05-07
+
+* Fixed PSR-4 container namespacing bug
 
 ### 2.0.1 - 2026-05-01
 
