@@ -198,6 +198,10 @@ If you would like to pay for assistance, additional features to be added to the 
 
 ## Changelog
 
+### 2.1 - 2026-05-07
+
+* Fixed PSR-4 container namespacing bug
+
 ### 2.0.1 - 2026-05-01
 
 * CI: restricted PHP version matrix to 8.4 and 8.5
