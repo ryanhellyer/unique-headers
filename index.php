@@ -30,8 +30,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 declare(strict_types=1);
 
-use Inpsyde\Modularity\Package;
-use Inpsyde\Modularity\Properties\PluginProperties;
+use RyanHellyer\UniqueHeaders\Vendor\Inpsyde\Modularity\Package;
+use RyanHellyer\UniqueHeaders\Vendor\Inpsyde\Modularity\Properties\PluginProperties;
 use RyanHellyer\UniqueHeaders\AdminModule;
 use RyanHellyer\UniqueHeaders\AttachmentHelper;
 use RyanHellyer\UniqueHeaders\DisplayModule;

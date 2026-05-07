@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace RyanHellyer\UniqueHeaders;
 
-use Inpsyde\Modularity\Module\ExecutableModule;
-use Psr\Container\ContainerInterface;
+use RyanHellyer\UniqueHeaders\Vendor\Inpsyde\Modularity\Module\ExecutableModule;
+use RyanHellyer\UniqueHeaders\Vendor\Psr\Container\ContainerInterface;
 
 class DisplayModule implements ExecutableModule
 {

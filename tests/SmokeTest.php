@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace RyanHellyer\UniqueHeaders\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Psr\Container\ContainerInterface;
+use RyanHellyer\UniqueHeaders\Vendor\Psr\Container\ContainerInterface;
 use RyanHellyer\UniqueHeaders\AdminModule;
 use RyanHellyer\UniqueHeaders\AttachmentHelper;
 use RyanHellyer\UniqueHeaders\DisplayModule;
