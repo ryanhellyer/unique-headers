@@ -4,7 +4,7 @@
 Plugin Name: Unique Headers
 Plugin URI: https://geek.hellyer.kiwi/plugins/unique-headers/
 Description: Unique Headers
-Version: 2.0.1
+Version: 2.1.1
 Author: Ryan Hellyer
 Author URI: https://geek.hellyer.kiwi/
 License: GPLv2 or later

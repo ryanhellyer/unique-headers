@@ -5,15 +5,13 @@ Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
 Tested up to: 7.0
 License: GPLv2 or later
-Stable tag: 2.1
+Stable tag: 2.1.1
 
-
-
-Adds the ability to use unique custom header images on individual pages, posts or categories or tags.
-
-This plugin has been actively maintained since 2012 and is used on over 20,000 websites worldwide.
+Add unique custom header images to individual pages, posts, categories, or tags.
 
 == Description ==
+
+This plugin has been actively maintained since 2012 and is used on over 20,000 websites worldwide.
 
 = Features =
 The <a href="https://geek.hellyer.kiwi/products/unique-headers/">Unique Headers Plugin</a> adds a custom header image box to the post/page edit screen. You can use this to upload a unique header image for that post, or use another image from your WordPress media library. When you view that page on the front-end of your site, the default header image for your site will be replaced by the unique header you selected.
@@ -91,6 +89,10 @@ Yes. Just send me a message via <a href="https://ryan.hellyer.kiwi/contact/">my 
 
 
 == Changelog ==
+
+= 2.1.1 (2026-05-07) =
+* Fixing version number
+* Shortening readme description to meet WordPress.org requirements
 
 = 2.1 (2026-05-07) =
 * Fixed PSR-4 container namespacing bug
