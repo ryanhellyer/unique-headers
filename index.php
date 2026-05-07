@@ -7,7 +7,7 @@ Description: Unique Headers
 Version: 2.0.1
 Author: Ryan Hellyer
 Author URI: https://geek.hellyer.kiwi/
-License: GPL2
+License: GPLv2 or later
 
 ------------------------------------------------------------------------
 Copyright Ryan Hellyer

@@ -45,6 +45,7 @@ spl_autoload_register(static function (string $class): void {
     $prefixes = [
         'RyanHellyer\\UniqueHeaders\\Vendor\\Psr\\Container\\' => __DIR__ . '/psr/container/src/',
         'RyanHellyer\\UniqueHeaders\\Vendor\\Inpsyde\\Modularity\\' => __DIR__ . '/inpsyde/modularity/src/',
+        'RyanHellyer\\UniqueHeaders\\' => __DIR__ . '/../src/',
     ];
     foreach ($prefixes as $prefix => $baseDir) {
         $len = strlen($prefix);
@@ -89,17 +90,17 @@ if [ "$MODE" = "prod" ]; then
     cp -r languages "$PLUGIN_DIR/"
     cp -r views "$PLUGIN_DIR/"
 
+    # Write a standalone autoloader for the zip (no Composer dependency)
     mkdir -p "$PLUGIN_DIR/vendor"
 
-    # Write a standalone autoloader for the zip (no Composer dependency)
-    cat > "$PLUGIN_DIR/vendor/autoload.php" << 'AUTOLOAD'
+    cat > "$PLUGIN_DIR/vendor/autoload.php" << 'PHP'
 <?php
 
 spl_autoload_register(static function (string $class): void {
     $prefixes = [
-        'RyanHellyer\\UniqueHeaders\\' => __DIR__ . '/../src/',
         'RyanHellyer\\UniqueHeaders\\Vendor\\Psr\\Container\\' => __DIR__ . '/psr/container/src/',
         'RyanHellyer\\UniqueHeaders\\Vendor\\Inpsyde\\Modularity\\' => __DIR__ . '/inpsyde/modularity/src/',
+        'RyanHellyer\\UniqueHeaders\\' => __DIR__ . '/../src/',
     ];
     foreach ($prefixes as $prefix => $baseDir) {
         $len = strlen($prefix);
@@ -113,7 +114,7 @@ spl_autoload_register(static function (string $class): void {
         }
     }
 });
-AUTOLOAD
+PHP
 
     mkdir -p "$PLUGIN_DIR/vendor/psr"
     mkdir -p "$PLUGIN_DIR/vendor/inpsyde"
