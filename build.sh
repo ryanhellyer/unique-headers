@@ -97,6 +97,7 @@ if [ "$MODE" = "prod" ]; then
 
 spl_autoload_register(static function (string $class): void {
     $prefixes = [
+        'RyanHellyer\\UniqueHeaders\\' => __DIR__ . '/../src/',
         'RyanHellyer\\UniqueHeaders\\Vendor\\Psr\\Container\\' => __DIR__ . '/psr/container/src/',
         'RyanHellyer\\UniqueHeaders\\Vendor\\Inpsyde\\Modularity\\' => __DIR__ . '/inpsyde/modularity/src/',
     ];
