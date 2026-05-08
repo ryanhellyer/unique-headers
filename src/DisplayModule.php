@@ -43,8 +43,16 @@ class DisplayModule implements ExecutableModule
         return true;
     }
 
-    public function postHeaderImageFilter(string $url): string
+    /**
+     * @param string|array<mixed> $url
+     * @return string|array<mixed>
+     */
+    public function postHeaderImageFilter($url)
     {
+        if (!is_string($url)) {
+            return $url;
+        }
+
         if (!is_single() && !is_page() && !is_home()) {
             return $url;
         }
@@ -74,8 +82,16 @@ class DisplayModule implements ExecutableModule
         return $this->setAttachmentData($data, $this->attachmentHelper->getId($postId, $this->nameUnderscores));
     }
 
-    public function taxonomyHeaderImageFilter(string $url): string
+    /**
+     * @param string|array<mixed> $url
+     * @return string|array<mixed>
+     */
+    public function taxonomyHeaderImageFilter($url)
     {
+        if (!is_string($url)) {
+            return $url;
+        }
+
         $taxId = $this->getCurrentTaxonomyId();
         if (!$taxId) {
             return $url;
