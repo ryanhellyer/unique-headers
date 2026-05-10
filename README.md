@@ -200,8 +200,8 @@ If you would like to pay for assistance, additional features to be added to the 
 
 ### 2.1.3 - 2026-05-10
 
-* Fix: Resolved issue where custom header images would not display on WooCommerce product category pages due to taxonomy caching at plugin init time
-* Fix: Restored ability to upload video headers in the customizer
+* Resolved issue where custom header images would not display on WooCommerce product category pages due to taxonomy caching at plugin init time
+* Restored ability to upload video headers in the customizer
 
 ### 2.1.2 - 2026-05-08
 
