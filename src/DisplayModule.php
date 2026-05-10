@@ -13,9 +13,6 @@ class DisplayModule implements ExecutableModule
     private string $name = 'custom-header-image';
     private string $nameUnderscores;
 
-    /** @var array<string, string> */
-    private array $taxonomies = [];
-
     public function __construct(AttachmentHelper $attachmentHelper)
     {
         $this->attachmentHelper = $attachmentHelper;
@@ -34,7 +31,6 @@ class DisplayModule implements ExecutableModule
         add_filter('theme_mod_header_image_data', [$this, 'postModifyHeaderImageData']);
 
         if (function_exists('get_term_meta')) {
-            $this->taxonomies = get_taxonomies(['public' => true]);
             add_action('admin_init', [$this, 'addTaxonomyFields']);
             add_filter('theme_mod_header_image', [$this, 'taxonomyHeaderImageFilter'], 5);
             add_filter('theme_mod_header_image_data', [$this, 'taxonomyModifyHeaderImageData']);
@@ -167,7 +163,7 @@ class DisplayModule implements ExecutableModule
             return;
         }
 
-        foreach ($this->taxonomies as $taxonomy) {
+        foreach (get_taxonomies(['public' => true]) as $taxonomy) {
             add_action($taxonomy . '_edit_form_fields', [$this, 'extraFields'], 1);
             add_action('edit_' . $taxonomy, [$this, 'storeTaxonomyData']);
         }
@@ -264,7 +260,7 @@ class DisplayModule implements ExecutableModule
         }
 
         if (is_tag() || is_tax()) {
-            foreach ($this->taxonomies as $taxonomy) {
+            foreach (get_taxonomies(['public' => true]) as $taxonomy) {
                 if ($taxonomy === 'category') {
                     continue;
                 }
