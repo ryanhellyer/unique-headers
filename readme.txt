@@ -5,7 +5,7 @@ Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
 Tested up to: 7.0
 License: GPLv2 or later
-Stable tag: 2.1.2
+Stable tag: 2.1.3
 
 Add unique custom header images to individual pages, posts, categories, or tags.
 
@@ -89,6 +89,10 @@ Yes. Just send me a message via <a href="https://ryan.hellyer.kiwi/contact/">my 
 
 
 == Changelog ==
+
+= 2.1.3 (2026-05-10) =
+* Fix: Resolved issue where custom header images would not display on WooCommerce product category pages due to taxonomy caching at plugin init time
+* Fix: Restored ability to upload video headers in the customizer
 
 = 2.1.2 (2026-05-08) =
 * Fix: Removed strict string type declarations from postHeaderImageFilter and taxonomyHeaderImageFilter to prevent TypeError when WordPress Customizer passes an array through the theme_mod_header_image filter
